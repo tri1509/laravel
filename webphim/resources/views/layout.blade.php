@@ -30,10 +30,10 @@
   <meta property="og:image:height" content="55" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel='dns-prefetch' href='//s.w.org' />
-  <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
-  <link rel='stylesheet' id='style-css' href='{{asset('css/style.css')}}' media=' all' />
-  <link rel='stylesheet' id='wp-block-library-css' href='{{asset('css/style.min.css')}}' media='all' />
-  <script type='text/javascript' src='{{asset('js/jquery.min.js')}}' id='halim-jquery-js'></script>
+  <link rel='stylesheet' id='bootstrap-css' href="{{ asset('css/bootstrap.min.css') }}" media='all' />
+  <link rel='stylesheet' id='style-css' href="{{ asset('css/style.css') }}" media='all' />
+  <link rel='stylesheet' id='wp-block-library-css' href="{{ asset('css/style.min.css') }}" media='all' />
+  <script type='text/javascript' src="{{ asset('js/jquery.min.js') }}" id='halim-jquery-js'></script>
   <style type="text/css" id="wp-custom-css">
   .textwidget p a img {
     width: 100%;
@@ -108,8 +108,8 @@
         <div class="collapse navbar-collapse" id="halim">
           <div class="menu-menu_1-container">
             <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
-              <li class="current-menu-item active"><a title="Trang Chủ" href="index.php">Trang Chủ</a></li>
-              <li class="mega"><a title="Phim Mới" href="danhmuc.php">Phim Mới</a></li>
+              <li class="current-menu-item active"><a title="Trang Chủ" href="{{route('homepage')}}">Trang Chủ</a></li>
+              <li class="mega"><a title="Phim Mới" href="{{route('category')}}">Phim Mới</a></li>
               <li class="mega dropdown">
                 <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span
                     class="caret"></span></a>
@@ -120,10 +120,11 @@
                 </ul>
               </li>
               <li class="mega dropdown">
-                <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể
+                <a title="Thể Loại" href="{{route('genre')}}" data-toggle="dropdown" class="dropdown-toggle"
+                  aria-haspopup="true">Thể
                   Loại <span class="caret"></span></a>
                 <ul role="menu" class=" dropdown-menu">
-                  <li><a title="Tâm Lý" href="danhmuc.php">Tâm Lý</a></li>
+                  <li><a title="Tâm Lý" href="{{route('genre')}}">Tâm Lý</a></li>
                   <li><a title="Hành động" href="">Hành động</a></li>
                   <li><a title="Viễn Tưởng" href="">Viễn Tưởng</a></li>
                   <li><a title="Hoạt Hình" href="danhmuc.php">Hoạt Hình</a></li>
@@ -143,10 +144,10 @@
                 </ul>
               </li>
               <li class="mega dropdown">
-                <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc
-                  Gia <span class="caret"></span></a>
+                <a title="Quốc Gia" href="{{route('country')}}" data-toggle="dropdown" class="dropdown-toggle"
+                  aria-haspopup="true">Quốc Gia<span class="caret"></span></a>
                 <ul role="menu" class=" dropdown-menu">
-                  <li><a title="Việt nam" href="danhmuc.php">Việt nam</a></li>
+                  <li><a title="Việt nam" href="{{route('country')}}">Việt nam</a></li>
                   <li><a title="Ấn Độ" href="danhmuc.php">Ấn Độ</a></li>
                   <li><a title="Mỹ" href="danhmuc.php">Mỹ</a></li>
                   <li><a title="Hồng Kông" href="danhmuc.php">Hồng Kông</a></li>
@@ -201,9 +202,9 @@
     </div>
   </footer>
   <div id='easy-top'></div>
-  <script type='text/javascript' src='{{asset('js/bootstrap.min.js?ver=5.7.2')}}' id='bootstrap-js'></script>
-  <script type='text/javascript' src={{asset('js/owl.carousel.min.js?ver=5.7.2')}}' id='carousel-js'></script>
-  <script type='text/javascript' src={{asset('js/halimtheme-core.min.js?ver=1626273138')}}' id='halim-init-js'></script>
+  <script type='text/javascript' src="{{asset ('js/bootstrap.min.js') }}" id='bootstrap-js'></script>
+  <script type='text/javascript' src="{{asset ('js/owl.carousel.min.js') }}" id='carousel-js'></script>
+  <script type='text/javascript' src="{{asset ('js/halimtheme-core.min.js') }}" id='halim-init-js'></script>
   <style>
   #overlay_mb {
     position: fixed;
