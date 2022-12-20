@@ -16,10 +16,10 @@
         <a class="nav-link" href="{{ route('country.create') }}">Quốc gia</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('watch.create') }}">Phim</a>
+        <a class="nav-link" href="{{ route('movie.create') }}">Phim</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('prisode.create') }}">Tập phim</a>
+        <a class="nav-link" href="{{ route('episode.create') }}">Tập phim</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>

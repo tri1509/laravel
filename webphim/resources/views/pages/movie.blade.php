@@ -5,9 +5,21 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-xs-6">
-          <div class="yoast_breadcrumb hidden-xs"><span><span><a href="danhmuc.php">Phim hay</a> » <span><a
-                    href="danhmuc.php">Mỹ</a> » <span class="breadcrumb_last" aria-current="page">GÓA PHỤ
-                    ĐEN</span></span></span></span></div>
+          <div class="yoast_breadcrumb hidden-xs">
+            <span><span>
+              <a href="{{route('category',$movie -> category -> slug)}}">
+                {{ $movie -> category -> title }}
+              </a> » 
+              <span>
+                <a href="{{route('country',$movie -> country -> slug)}}">
+                  {{ $movie -> country -> title }}
+                </a> » 
+                <span class="breadcrumb_last" aria-current="page">
+                  {{ $movie -> title }}
+                </span>
+              </span>
+            </span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -30,8 +42,8 @@
           <div class="movie_info col-xs-12">
             <div class="movie-poster col-md-3">
               <img class="movie-thumb"
-                src="https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=https://1.bp.blogspot.com/-fL7o9nefEPc/YOk_YIB6QRI/AAAAAAAAJn8/hahCLlgRq4AFc8O4YeKhpb5zncixXAF0wCLcBGAsYHQ/s320/images.jpg"
-                alt="GÓA PHỤ ĐEN">
+                src="{{ asset('/uploads/movie/'.$movie -> image) }}"
+                alt="{{ $movie -> title }}">
               <div class="bwa-content">
                 <div class="loader"></div>
                 <a href="{{route('watch')}}" class="bwac-btn">
@@ -42,17 +54,42 @@
             <div class="film-poster col-md-9">
               <h1 class="movie-title title-1"
                 style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">
-                GÓA PHỤ ĐEN</h1>
-              <h2 class="movie-title title-2" style="font-size: 12px;">Black Widow (2021)</h2>
+                {{ $movie -> title }}
+              </h1>
+              <h2 class="movie-title title-2" style="font-size: 12px;">
+                {{ $movie -> name_eng }}
+              </h2>
               <ul class="list-info-group">
-                <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">HD</span><span
-                    class="episode">Vietsub</span></li>
-                <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
-                <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
-                <li class="list-info-group-item"><span>Thể loại</span> : <a href="" rel="category tag">Chiếu
-                    Rạp</a>, <a href="" rel="category tag">Hành động</a>, <a href="" rel="category tag">Phiêu
-                    Lưu</a>, <a href="" rel="category tag">Viễn Tưởng</a></li>
-                <li class="list-info-group-item"><span>Quốc gia</span> : <a href="" rel="tag">Mỹ</a></li>
+                <li class="list-info-group-item">
+                  <span>Trạng Thái</span> : 
+                  <span class="quality">HD</span>
+                  <span class="episode">Vietsub</span>
+                  </li>
+                <li class="list-info-group-item">
+                  <span>Điểm IMDb</span> : 
+                  <span class="imdb">7.2</span>
+                </li>
+                <li class="list-info-group-item">
+                  <span>Thời lượng</span> : 133 Phút
+                </li>
+                <li class="list-info-group-item">
+                  <span>Danh mục</span> : 
+                  <a href="{{route('category',$movie -> category -> slug)}}" rel="category tag">
+                    {{ $movie -> category -> title }}
+                  </a>
+                </li>
+                <li class="list-info-group-item">
+                  <span>Thể loại</span> : 
+                  <a href="{{route('genre',$movie -> genre -> slug)}}" rel="category tag">
+                    {{ $movie -> genre -> title }}
+                  </a>
+                </li>
+                <li class="list-info-group-item">
+                  <span>Quốc gia</span> : 
+                  <a href="{{route('country',$movie -> country -> slug)}}" rel="tag">
+                    {{ $movie -> country -> title }}
+                  </a>
+                </li>
                 <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow"
                     href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
                 <li class="list-info-group-item last-item"
@@ -80,25 +117,7 @@
         <div class="entry-content htmlwrap clearfix">
           <div class="video-item halim-entry-box">
             <article id="post-38424" class="item-content">
-              Phim <a href="https://phimhay.co/goa-phu-den-38424/">GÓA PHỤ ĐEN</a> - 2021 - Mỹ:
-              <p>Góa Phụ Đen &#8211; Black Widow 2021: Natasha Romanoff hay còn gọi là Góa phụ đen phải đối mặt với
-                những phần đen tối của mình khi một âm mưu nguy hiểm liên quan đến quá khứ của cô nảy sinh. Bị truy
-                đuổi bởi một thế lực sẽ không có gì có thể hạ gục cô, Natasha phải đối mặt với lịch sử là một điệp
-                viên những mối quan hệ tan vỡ đã để lại trong cô từ lâu trước khi cô trở thành thành viên của biệt
-                đội Avenger.</p>
-              <h5>Từ Khoá Tìm Kiếm:</h5>
-              <ul>
-                <li>black widow vietsub</li>
-                <li>Black Widow 2021 Vietsub</li>
-                <li>phim black windows 2021</li>
-                <li>xem phim black windows</li>
-                <li>xem phim black widow</li>
-                <li>phim black windows</li>
-                <li>goa phu den</li>
-                <li>xem phim black window</li>
-                <li>phim black widow 2021</li>
-                <li>xem black widow</li>
-              </ul>
+              {{ $movie -> description }}
             </article>
           </div>
         </div>
@@ -203,7 +222,7 @@
 
         </div>
         <script>
-        jQuery(document).ready(function($) {
+        $(document).ready(function($) {
           var owl = $('#halim_related_movies-2');
           owl.owlCarousel({
             loop: true,

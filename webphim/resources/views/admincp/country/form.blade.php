@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">Quản lý danh mục</div>
+        <div class="card-header">Quản lý quốc gia</div>
         <div class="card-body">
           @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -12,14 +12,14 @@
           </div>
           @endif
 
-          @if (!isset($category))
-          {!! Form::open(['route' => 'category.store','method' => 'post']) !!}
+          @if (!isset($country))
+          {!! Form::open(['route' => 'country.store','method' => 'post']) !!}
           @else 
-          {!! Form::open(['route' => ['category.update',$category -> id],'method' => 'put']) !!}
+          {!! Form::open(['route' => ['country.update',$country -> id],'method' => 'put']) !!}
           @endif
             <div class = "form-group">
               {!! Form::label('title' , 'Title' , []) !!}
-              {!! Form::text('title' , isset($category) ? $category -> title : '' , 
+              {!! Form::text('title' , isset($country) ? $country -> title : '' , 
                 [
                   'class' => 'form-control',
                   'placeholder' => 'Nhập vào dữ liệu....',
@@ -30,7 +30,7 @@
             </div>
             <div class = "form-group">
               {!! Form::label('slug' , 'Slug' , []) !!}
-              {!! Form::text('slug' , isset($category) ? $category -> slug : '' , 
+              {!! Form::text('slug' , isset($country) ? $country -> slug : '' , 
                 [
                   'class' => 'form-control',
                   'placeholder' => 'Nhập vào dữ liệu....',
@@ -41,7 +41,7 @@
             </div>
             <div class = "form-group">
               {!! Form::label('description' , 'Description' , []) !!}
-              {!! Form::textarea('description' , isset($category) ? $category -> description : '' , 
+              {!! Form::textarea('description' , isset($country) ? $country -> description : '' , 
                 [
                   'class' => 'form-control',
                   'placeholder' => 'Nhập vào dữ liệu....',
@@ -56,13 +56,13 @@
                 '1' => 'Hiển thị',
                 '0' => 'Ẩn'
               ]
-              ,isset($category) ? $category -> status : null,
+              ,isset($country) ? $country -> status : null,
               [
                 'class' => 'form-control',
                 'aria-label' => 'Default select example'
               ]) !!}
             </div>
-          @if (!isset($category))
+          @if (!isset($country))
             {!! Form::submit('Thêm vào', ['class' => 'btn btn-success pull-right']) !!}
           @else
             {!! Form::submit('Cập nhật', ['class' => 'btn btn-success pull-right']) !!}
@@ -80,9 +80,9 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody class="order_position">
+        <tbody>
         @foreach($list as $key => $cate)
-          <tr id="{{ $cate -> id }}">
+          <tr>
             <th scope="row">{{$key}}</th>
             <td>{{$cate -> title}}</td>
             <td>{{$cate -> description}}</td>
@@ -97,7 +97,7 @@
               {!! Form::open(
                 [
                   'method' => 'DELETE', 
-                  'route' => ['category.destroy',$cate -> id],
+                  'route' => ['country.destroy',$cate -> id],
                   'onsubmit' => 'return confirm("Bạn có muốn xoá không ?")', 
                 ]
               ) !!}
@@ -105,7 +105,7 @@
                 </div>
               {!! Form::close() !!}
               <i style="margin:0 5px"> | </i>
-              <a href="{{ route('category.edit',$cate -> id) }}" class="btn btn-warning">Sửa</a>
+              <a href="{{ route('country.edit',$cate -> id) }}" class="btn btn-warning">Sửa</a>
             </td>
           </tr>
         @endforeach

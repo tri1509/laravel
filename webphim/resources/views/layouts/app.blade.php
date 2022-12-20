@@ -1,29 +1,16 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
   <title>{{ config('app.name', 'Laravel') }}</title>
-
-  <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
-
-  <!-- Fonts -->
-  <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> -->
-
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-  <!-- Styles -->
-  <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-
 <body>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -93,8 +80,66 @@
   </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
+<script type="text/javascript">
+function ChangeToSlug() {
+  var slug;
+  //Lấy text từ thẻ input title 
+  slug = document.getElementById("slug").value;
+  slug = slug.toLowerCase();
+  //Đổi ký tự có dấu thành không dấu
+  slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+  slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+  slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+  slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+  slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+  slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+  slug = slug.replace(/đ/gi, 'd');
+  //Xóa các ký tự đặt biệt
+  slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+  //Đổi khoảng trắng thành ký tự gạch ngang
+  slug = slug.replace(/ /gi, "-");
+  //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+  //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+  slug = slug.replace(/\-\-\-\-\-/gi, '-');
+  slug = slug.replace(/\-\-\-\-/gi, '-');
+  slug = slug.replace(/\-\-\-/gi, '-');
+  slug = slug.replace(/\-\-/gi, '-');
+  //Xóa các ký tự gạch ngang ở đầu và cuối
+  slug = '@' + slug + '@';
+  slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+  //In slug ra textbox có id “slug”
+  document.getElementById('convert_slug').value = slug;
+}
+</script>
+<script>
+  $( function() {
+    $( ".order_position" ).sortable({
+      placeholder: 'ui-state-highlight',
+      update: function(event,ui){
+        var array_id = [];
+        $( ".order_position tr" ).each(function(){
+          array_id.push($(this).attr('id'))
+        })
+        $.ajax({
+          headers : {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          url:"{{ route('resorting') }}",
+          method :"POST",
+          data: {array_id:array_id},
+          success:function(data){
+            alert('sắp xếp thành công !');
+          }
+        })
+      }
+    });
 
+    $('#table-phim').DataTable();
+  });
+</script>
 </html>

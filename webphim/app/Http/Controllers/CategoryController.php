@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $list = Category::all();
+        $list = Category::orderBy('position','ASC') -> get();
         return view('admincp.category.form',compact('list'));
     }
 
@@ -42,6 +42,7 @@ class CategoryController extends Controller
         $category -> title = $data['title'];
         $category -> description = $data['description'];
         $category -> status = $data['status'];
+        $category -> slug = $data['slug'];
         $category -> save();
         return redirect() -> back();
     }
@@ -66,7 +67,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        $list = Category::all();
+        $list = Category::orderBy('position','ASC') -> get();
         return view('admincp.category.form',compact('list','category'));
     }
 
@@ -83,6 +84,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category -> title = $data['title'];
         $category -> description = $data['description'];
+        $category -> slug = $data['slug'];
         $category -> status = $data['status'];
         $category -> save();
         return redirect() -> back();
@@ -98,5 +100,15 @@ class CategoryController extends Controller
     {
         Category::find($id) -> delete();
         return redirect() -> back();
+    }
+
+    public function resorting(Request $request)
+    {
+        $data = $request -> all();
+        foreach($data['array_id'] as $key => $value){
+            $category = Category::find($value);
+            $category -> position = $key;
+            $category -> save();
+        }
     }
 }
