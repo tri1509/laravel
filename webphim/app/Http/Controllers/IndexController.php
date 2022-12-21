@@ -9,6 +9,7 @@ use App\Models\Genre;
 use App\Models\Country;
 use App\Models\Movie;
 use App\Models\Episode;
+use DB;
 
 class IndexController extends Controller
 {
@@ -25,7 +26,7 @@ class IndexController extends Controller
         $genre = Genre::orderBy('id','DESC') -> get();
         $country = Country::orderBy('id','DESC') -> get();
         $cate_slug = Category::where('slug',$slug) -> first();
-        $movie = Movie::where('category_id',$cate_slug -> id) -> paginate(4);
+        $movie = Movie::where('category_id',$cate_slug -> id) -> paginate(8);
         return view('pages.category',compact('category','country','genre','cate_slug','movie'));
     }
     public function genre($slug) {
@@ -49,7 +50,8 @@ class IndexController extends Controller
         $country = Country::orderBy('id','DESC') -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
         $movie = Movie::with('category','genre','country') -> where('slug',$slug) -> where('status', 1) -> first();
-        return view('pages.movie',compact('category','country','genre','movie'));
+        $related = Movie::with('category','genre','country') -> where('category_id',$movie -> category -> id) -> orderBy(DB::raw('RAND()')) -> whereNotIn('slug',[$slug]) -> get();
+        return view('pages.movie',compact('category','country','genre','movie','related'));
     }
     public function watch() {
         return view('pages.watch');

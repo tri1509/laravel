@@ -40,7 +40,7 @@
               ) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('slug' , 'Slug' , []) !!}
+              {!! Form::label('slug' , 'Đường dẫn' , []) !!}
               {!! Form::text('slug' , isset($movie) ? $movie -> slug : '' , 
                 [
                   'class' => 'form-control',
@@ -50,7 +50,7 @@
               ) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('description' , 'Description' , []) !!}
+              {!! Form::label('description' , 'Nội dung' , []) !!}
               {!! Form::textarea('description' , isset($movie) ? $movie -> description : '' , 
                 [
                   'class' => 'form-control',
@@ -61,6 +61,7 @@
               ) !!}
             </div>
             <div class = "form-group">
+              {!! Form::label('status' , 'Trạng thái' , []) !!}
               {!! Form::select('status',
               [
                 '1' => 'Hiển thị',
@@ -73,28 +74,28 @@
               ]) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('category' , 'Category' , []) !!}
+              {!! Form::label('category' , 'Danh mục' , []) !!}
               {!! Form::select('category_id',$category, isset($movie) ? $movie -> category : '' ,
               [
                 'class' => 'form-control',
               ]) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('country' , 'Country' , []) !!}
+              {!! Form::label('country' , 'Quốc gia' , []) !!}
               {!! Form::select('country_id', $country, isset($movie) ? $movie -> country : '' ,
               [
                 'class' => 'form-control',
               ]) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('genre' , 'Genre' , []) !!}
+              {!! Form::label('genre' , 'Thẻ loại' , []) !!}
               {!! Form::select('genre_id',$genre, isset($movie) ? $movie -> genre : '' ,
               [
                 'class' => 'form-control',
               ]) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('hot' , 'Hot' , []) !!}
+              {!! Form::label('hot' , 'Phim hot' , []) !!}
               {!! Form::select('phim_hot',
               [
                 '1' => 'Hot',
@@ -105,9 +106,36 @@
                 'class' => 'form-control',
               ]) !!}
             </div>
+            <div class = "form-group">
+              {!! Form::label('resolution' , 'Định dạng' , []) !!}
+              {!! Form::select('resolution',
+              [
+                '4' => 'FullHD',
+                '3' => 'Cam',
+                '2' => 'HDCam',
+                '1' => 'SD',
+                '0' => 'HD'
+              ], 
+              isset($movie) ? $movie -> resolution : '' ,
+              [
+                'class' => 'form-control',
+              ]) !!}
+            </div>
+            <div class = "form-group">
+              {!! Form::label('phude' , 'Phụ đề' , []) !!}
+              {!! Form::select('phude',
+              [
+                '1' => 'Thuyết minh',
+                '0' => 'Phụ đề'
+              ], 
+              isset($movie) ? $movie -> phude : '' ,
+              [
+                'class' => 'form-control',
+              ]) !!}
+            </div>
             <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
               {!! Form::label('formFile', 'Image',['class' => 'form-label']) !!}
-              {!! Form::file('image', ['required' => 'required','class' => 'form-control']) !!}
+              {!! Form::file('image', ['class' => 'form-control']) !!}
               <small class="text-danger">{{ $errors->first('photo') }}</small>
 
               @if (isset($movie))

@@ -1,21 +1,26 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
   <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <table class="table table-hover" id="table-phim">
+      <table class="table table-striped table-hover align-middle" id="table-phim">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Image</th>
-            <th scope="col">Hot</th>
-            <th scope="col">Description</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Hình</th>
+            <th scope="col">Phim Hot</th>
+            <th scope="col">Định dạng</th>
+            <th scope="col">Phụ đề</th>
+            <th scope="col">Đường dẫn</th>
             <th scope="col">Active</th>
-            <th scope="col">Country</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Caterory</th>
+            <th scope="col">Quốc gia</th>
+            <th scope="col">Thể loại</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Ngày cập nhật</th>
+            <th scope="col">Năm</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -34,7 +39,27 @@
                 Có
               @endif
             </td>
-            <td>{{$cate -> description}}</td>
+            <td>
+              @if($cate -> resolution == 0)
+                HD
+              @elseif($cate -> resolution == 1)
+                SD
+              @elseif($cate -> resolution == 2)
+                HDCam
+              @elseif($cate -> resolution == 3)
+                Cam
+              @elseif($cate -> resolution == 4)
+                FullHD
+              @endif
+            </td>
+            <td>
+              @if($cate -> phude == 0)
+                Phụ đề
+              @else
+                Thuyết minh
+              @endif
+            </td>
+            <td>{{$cate -> slug}}</td>
             <td>
               @if($cate -> status)
                 Hiển thị
@@ -45,7 +70,15 @@
             <td>{{ $cate -> country -> title }}</td>
             <td>{{ $cate -> genre -> title }}</td>
             <td>{{ $cate -> category -> title }}</td>
-            <td style="display:flex">
+            <td>{{ $cate -> ngaytao }}</td>
+            <td>{{ $cate -> ngaycapnhat }}</td>
+            <td>{!! Form::selectYear('year',1995,2020, isset($cate -> year) ? $cate -> year : '',
+            [
+              'class' => 'select-year form-control',
+              'id' => $cate -> id,
+              'style' => 'width:85px'
+            ]) !!}</td>
+            <td>
               {!! Form::open(
                 [
                   'method' => 'DELETE', 
@@ -56,7 +89,7 @@
                 {!! Form::submit('Xoá', ['class' => 'btn btn-danger']) !!}
                 </div>
               {!! Form::close() !!}
-              <i style="margin:0 5px"> | </i>
+              <hr>
               <a href="{{ route('movie.edit',$cate -> id) }}" class="btn btn-warning">Sửa</a>
             </td>
           </tr>

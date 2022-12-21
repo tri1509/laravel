@@ -33,8 +33,27 @@
                 <figure><img class="lazy img-responsive"
                     src="{{ asset('/uploads/movie/'.$mov -> image) }}"
                     alt="{{ $mov -> title }}" title="{{ $mov -> title }}"></figure>
-                <span class="status">5/5</span><span class="episode"><i class="fa fa-play"
-                    aria-hidden="true"></i>Vietsub</span>
+                <span class="status">
+                  @if($mov -> resolution == 0)
+                    HD
+                  @elseif($mov -> resolution == 1)
+                    SD
+                  @elseif($mov -> resolution == 2)
+                    HDCam
+                  @elseif($mov -> resolution == 3)
+                    Cam
+                  @elseif($mov -> resolution == 4)
+                    FullHD
+                  @endif
+                </span>
+                <span class="episode">
+                  <i class="fa fa-play" aria-hidden="true"></i>
+                  @if($mov -> phude == 0)
+                    Phụ đề
+                  @else
+                    Thuyết minh
+                  @endif
+                </span>
                 <div class="icon_overlay"></div>
                 <div class="halim-post-title-box">
                   <div class="halim-post-title ">
