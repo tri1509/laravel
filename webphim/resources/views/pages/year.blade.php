@@ -7,7 +7,7 @@
         <div class="col-xs-12">
           <div class="yoast_breadcrumb hidden-xs">
             <span><span>
-              <a href="">{{ $cate_slug -> title }}</a> » 
+              Phim thuộc năm
               @for ($y = 1995; $y <= 2020; $y ++)  
               » <span class="breadcrumb_last" aria-current="page">
                 <a href="{{ url('nam-'.$y) }}" title="Năm {{ $y }}">{{ $y }}</a>
@@ -25,7 +25,7 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
     <section>
       <div class="section-bar clearfix">
-        <h1 class="section-title"><span>{{ $cate_slug -> title }}</span></h1>
+        <h1 class="section-title"><span>Năm : {{ $year }}</span></h1>
       </div>
       <div class="halim_box">
 
@@ -84,7 +84,6 @@
       </div>
     </section>
   </main>
-  
   @include('pages.inc.sidebar')
 
 </div>

@@ -4603,8 +4603,7 @@ a .hl-dot-3 {
 }
 .halim-ajax-popular-post-loading,
 .halim-ajax-get-post-loading {
-    background: rgba(21, 29, 37, 0.78) url(assets/images/ajax-loader.gif)
-        no-repeat 95% 2%;
+    background: rgba(21, 29, 37, 0.78) no-repeat 95% 2%;
     position: absolute;
     width: 100%;
     height: 100%;

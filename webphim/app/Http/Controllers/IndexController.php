@@ -19,39 +19,79 @@ class IndexController extends Controller
         $country = Country::orderBy('id','DESC') -> get();
         $category_home = Category::with('movie') -> orderBy('id','DESC') -> where('status', 1) -> get();
         $phim_hot = Movie::all() -> where('phim_hot', 1)-> where('status', 1);
-        return view('pages.home',compact('category','country','genre','category_home','phim_hot'));
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.home',compact('category','country','genre','category_home','phim_hot','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
     }
     public function category($slug) {
         $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
         $country = Country::orderBy('id','DESC') -> get();
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $cate_slug = Category::where('slug',$slug) -> first();
-        $movie = Movie::where('category_id',$cate_slug -> id) -> paginate(8);
-        return view('pages.category',compact('category','country','genre','cate_slug','movie'));
+        $movie = Movie::where('category_id',$cate_slug -> id) -> paginate(40);
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.category',compact('category','country','genre','cate_slug','movie','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
+    }
+    public function year($year) {
+        $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
+        $genre = Genre::orderBy('id','DESC') -> get();
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
+        $country = Country::orderBy('id','DESC') -> get();
+        $year = $year;
+        $movie = Movie::where('year',$year) -> paginate(40);
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.year',compact('category','country','genre','year','movie','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
+    }
+    public function tag($tag) {
+        $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
+        $genre = Genre::orderBy('id','DESC') -> get();
+        $country = Country::orderBy('id','DESC') -> get();
+        $tag = $tag;
+        $movie = Movie::where('tags','LIKE', '%'.$tag.'%') -> paginate(40);
+        return view('pages.tag',compact('category','country','genre','tag','movie'));
     }
     public function genre($slug) {
         $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $genre = Genre::orderBy('id','DESC') -> get();
         $genre_slug = Genre::where('slug',$slug) -> first();
         $country = Country::orderBy('id','DESC') -> get();
         $movie = Movie::where('genre_id',$genre_slug -> id) -> paginate(40);
-        return view('pages.genre',compact('category','country','genre','genre_slug','movie'));
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.genre',compact('category','country','genre','genre_slug','movie','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
     }
     public function country($slug) {
         $category = Category::orderBy('id','DESC') -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $country_slug = Country::where('slug',$slug) -> first();
         $country = Country::orderBy('id','DESC') -> get();
         $movie = Movie::where('country_id',$country_slug -> id) -> paginate(40);
-        return view('pages.country',compact('category','country','genre','country_slug','movie'));
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.country',compact('category','country','genre','country_slug','movie','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
     }
     public function movie($slug) {
         $category = Category::orderBy('id','DESC') -> get();
+        $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $country = Country::orderBy('id','DESC') -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
         $movie = Movie::with('category','genre','country') -> where('slug',$slug) -> where('status', 1) -> first();
         $related = Movie::with('category','genre','country') -> where('category_id',$movie -> category -> id) -> orderBy(DB::raw('RAND()')) -> whereNotIn('slug',[$slug]) -> get();
-        return view('pages.movie',compact('category','country','genre','movie','related'));
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        return view('pages.movie',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang'));
     }
     public function watch() {
         return view('pages.watch');

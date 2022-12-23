@@ -153,10 +153,14 @@
               <li class="mega dropdown">
                 <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span
                     class="caret"></span></a>
-                <ul role="menu" class=" dropdown-menu">
-                  <li><a title="Phim 2020" href="danhmuc.php">Phim 2020</a></li>
-                  <li><a title="Năm 2019" href="danhmuc.php">Năm 2019</a></li>
-                  <li><a title="Năm 2018" href="danhmuc.php">Năm 2018</a></li>
+                <ul role="menu" class="dropdown-menu">
+                  @for ($year = 1995; $year <= 2020; $year ++) 
+                    <li>
+                      <a title="Năm {{ $year }}" href="{{ url('nam-'.$year) }}">
+                        {{ $year }}
+                      </a>
+                    </li> 
+                  @endfor
                 </ul>
               </li>
             </ul>
@@ -202,6 +206,25 @@
   <script type='text/javascript' src="{{asset ('js/bootstrap.min.js') }}" id='bootstrap-js'></script>
   <script type='text/javascript' src="{{asset ('js/owl.carousel.min.js') }}" id='carousel-js'></script>
   <script type='text/javascript' src="{{asset ('js/halimtheme-core.min.js') }}" id='halim-init-js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+  <script>
+    // $('#watch_trailer').click(function(e) {
+    //   e.prevenDefault();
+    //   var aid = $(this).attr('href');
+    //   $('html, body').animate({
+    //     scrollTop: $(aid).offset().top
+    //   }, 'slow');
+    // });
+    $('a[href*="#"]')
+    .not('[href="#"]')
+    .not('[href="#*"]')
+    .click(function(e) {
+        var data_id = $(this).attr('href');
+        $('html, body').animate({
+        scrollTop: $(data_id).offset().top
+        }, '0');
+    });
+  </script>
   <style>
   #overlay_mb {
     position: fixed;

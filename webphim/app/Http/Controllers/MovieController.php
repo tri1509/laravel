@@ -33,6 +33,14 @@ class MovieController extends Controller
         $movie -> save();
     }
 
+    public function update_topview(Request $request)
+    {
+        $data = $request -> all();
+        $movie = Movie::find($data['id_phim']);
+        $movie -> topview = $data['topview'];
+        $movie -> save();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -59,18 +67,21 @@ class MovieController extends Controller
         // dd($data);
         $movie = new Movie();
         $movie -> title = $data['title'];
-        $movie -> name_eng = $data['name_eng'];
-        $movie -> phim_hot = $data['phim_hot'];
-        $movie -> phude = $data['phude'];
-        $movie -> resolution = $data['resolution'];
-        $movie -> slug = $data['slug'];
-        $movie -> status = $data['status'];
+        $movie -> trailer = $data['trailer'];
         $movie -> description = $data['description'];
+        $movie -> status = $data['status'];
         $movie -> category_id = $data['category_id'];
         $movie -> genre_id = $data['genre_id'];
         $movie -> country_id = $data['country_id'];
+        $movie -> slug = $data['slug'];
+        $movie -> phim_hot = $data['phim_hot'];
+        $movie -> resolution = $data['resolution'];
+        $movie -> name_eng = $data['name_eng'];
+        $movie -> phude = $data['phude'];
         $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> ngaycapnhat = Carbon::now('asia/Ho_Chi_Minh');
+        $movie -> thoiluong = $data['thoiluong'];
+        $movie -> tags = $data['tags'];
         
         $get_image = $request -> file('image');
 
@@ -121,20 +132,23 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request -> all();
-        // dd($data);
         $movie = Movie::find($id);
         $movie -> title = $data['title'];
-        $movie -> name_eng = $data['name_eng'];
-        $movie -> resolution = $data['resolution'];
-        $movie -> phude = $data['phude'];
-        $movie -> phim_hot = $data['phim_hot'];
-        $movie -> slug = $data['slug'];
-        $movie -> status = $data['status'];
         $movie -> description = $data['description'];
+        $movie -> status = $data['status'];
         $movie -> category_id = $data['category_id'];
         $movie -> genre_id = $data['genre_id'];
+        $movie -> trailer = $data['trailer'];
         $movie -> country_id = $data['country_id'];
+        $movie -> slug = $data['slug'];
+        $movie -> phim_hot = $data['phim_hot'];
+        $movie -> resolution = $data['resolution'];
+        $movie -> name_eng = $data['name_eng'];
+        $movie -> phude = $data['phude'];
+        $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> ngaycapnhat = Carbon::now('asia/Ho_Chi_Minh');
+        $movie -> thoiluong = $data['thoiluong'];
+        $movie -> tags = $data['tags'];
         
         $get_image = $request -> file('image');
         if($get_image) {

@@ -152,7 +152,27 @@ function ChangeToSlug() {
           alert('Thay đổi phim theo năm ' + year + ' thành công');
         }
       });
-    })
+    });
+
+    $('.select-topview').change(function(){
+      var topview = $(this).find(':selected').val();
+      var id_phim = $(this).attr('id');
+      if(topview == 0){
+        var text = "Ngày";
+      }else if(topview == 1){
+        var text = "Tuần";
+      }else{
+        var text = "Tháng";
+      }
+      $.ajax({
+        url: "{{ url('/update-topview-phim') }}",
+        method: "GET",
+        data: { topview: topview, id_phim: id_phim },
+        success: function() {
+          alert('Phim hot theo ' + text);
+        }
+      });
+    });
   });
 </script>
 </html>

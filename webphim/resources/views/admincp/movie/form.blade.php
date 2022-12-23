@@ -19,7 +19,7 @@
           {!! Form::open(['route' => ['movie.update',$movie -> id],'method' => 'put','enctype' => 'multipart/form-data']) !!}
           @endif
             <div class = "form-group">
-              {!! Form::label('title' , 'Title' , []) !!}
+              {!! Form::label('title' , 'Tên phim' , []) !!}
               {!! Form::text('title' , isset($movie) ? $movie -> title : '' , 
                 [
                   'class' => 'form-control',
@@ -61,6 +61,37 @@
               ) !!}
             </div>
             <div class = "form-group">
+              {!! Form::label('tags' , 'Tags phim' , []) !!}
+              {!! Form::textarea('tags' , isset($movie) ? $movie -> tags : '' , 
+                [
+                  'class' => 'form-control',
+                  'placeholder' => 'Nhập vào dữ liệu....',
+                  'id' => 'tags',
+                  'style' => 'resize:none'
+                ]
+              ) !!}
+            </div>
+            <div class = "form-group">
+              {!! Form::label('trailer' , 'Trailer' , []) !!}
+              {!! Form::text('trailer' , isset($movie) ? $movie -> trailer : '' , 
+                [
+                  'class' => 'form-control',
+                  'placeholder' => 'Nhập vào dữ liệu....',
+                  'id' => 'trailer',
+                ]
+              ) !!}
+            </div>
+            <div class = "form-group">
+              {!! Form::label('thoiluong' , 'Thời lượng phim (phút)' , []) !!}
+              {!! Form::text('thoiluong' , isset($movie) ? $movie -> thoiluong : '' , 
+                [
+                  'class' => 'form-control',
+                  'placeholder' => 'Nhập vào dữ liệu....',
+                  'maxlength' => '3'
+                ]
+              ) !!}
+            </div>
+            <div class = "form-group">
               {!! Form::label('status' , 'Trạng thái' , []) !!}
               {!! Form::select('status',
               [
@@ -75,21 +106,21 @@
             </div>
             <div class = "form-group">
               {!! Form::label('category' , 'Danh mục' , []) !!}
-              {!! Form::select('category_id',$category, isset($movie) ? $movie -> category : '' ,
+              {!! Form::select('category_id',$category,isset($movie) ? $movie -> category_id :'',
               [
                 'class' => 'form-control',
               ]) !!}
             </div>
             <div class = "form-group">
               {!! Form::label('country' , 'Quốc gia' , []) !!}
-              {!! Form::select('country_id', $country, isset($movie) ? $movie -> country : '' ,
+              {!! Form::select('country_id', $country, isset($movie) ? $movie -> country_id  : '' ,
               [
                 'class' => 'form-control',
               ]) !!}
             </div>
             <div class = "form-group">
-              {!! Form::label('genre' , 'Thẻ loại' , []) !!}
-              {!! Form::select('genre_id',$genre, isset($movie) ? $movie -> genre : '' ,
+              {!! Form::label('genre' , 'Thể loại' , []) !!}
+              {!! Form::select('genre_id',$genre, isset($movie) ? $movie -> genre_id : '' ,
               [
                 'class' => 'form-control',
               ]) !!}

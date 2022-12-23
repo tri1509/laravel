@@ -50,6 +50,9 @@
                   <i class="fa fa-play"></i>
                 </a>
               </div>
+              @if ($movie -> trailer != NULL) 
+                <a href="#watch_trailer" class="btn btn-info" style="display:block">Xem trailer</a>
+              @endif
             </div>
             <div class="film-poster col-md-9">
               <h1 class="movie-title title-1"
@@ -88,7 +91,7 @@
                   <span class="imdb">7.2</span>
                 </li>
                 <li class="list-info-group-item">
-                  <span>Thời lượng</span> : 133 Phút
+                  <span>Thời lượng</span> : {{ $movie -> thoiluong }} Phút
                 </li>
                 <li class="list-info-group-item">
                   <span>Danh mục</span> : 
@@ -139,6 +142,41 @@
             </article>
           </div>
         </div>
+        {{-- tags phim --}}
+        <div class="section-bar clearfix">
+          <h2 class="section-title"><span style="color:#ffed4d">Tags phim</span></h2>
+        </div>
+        <div class="entry-content htmlwrap clearfix">
+          <div class="video-item halim-entry-box">
+            <article id="post-38424" class="item-content">
+              @if ($movie -> tags != NULL) 
+                @php
+                  $tags = array();
+                  $tags = explode(',',$movie -> tags);
+                @endphp
+  
+                @foreach ($tags as $tag) 
+                  <a href="{{ url('tag/'.$tag) }}">{{ $tag }}</a><br>
+                @endforeach
+              @else
+                Chưa có từ khoá !
+              @endif
+            </article>
+          </div>
+        </div>
+        {{-- Trailer phim --}}
+        @if ($movie -> trailer != NULL) 
+          <div class="section-bar clearfix" id="watch_trailer">
+            <h2 class="section-title"><span style="color:#ffed4d">Trailer phim</span></h2>
+          </div>
+          <div class="entry-content htmlwrap clearfix">
+            <div class="video-item halim-entry-box">
+              <article id="post-38424" class="item-content">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $movie -> trailer }}" title="{{ $movie -> title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </article>
+            </div>
+          </div>
+        @endif
       </div>
     </section>
     <section class="related-movies">
@@ -223,6 +261,8 @@
       </div>
     </section>
   </main>
-  <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4"></aside>
+  
+  @include('pages.inc.sidebar')
+
 </div>
 @endsection

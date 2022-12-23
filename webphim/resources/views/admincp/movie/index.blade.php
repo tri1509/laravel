@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-  <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
+  <div class="text-center container">
+    <a href="{{ route('movie.create') }}" class="btn btn-primary" style="width:100%">Thêm phim</a>
+  </div>
   <div class="row justify-content-center">
     <div class="col-md-12">
       <table class="table table-striped table-hover align-middle" id="table-phim">
@@ -10,6 +12,7 @@
             <th scope="col">#</th>
             <th scope="col">Tên</th>
             <th scope="col">Hình</th>
+            <th scope="col">Thời lượng</th>
             <th scope="col">Phim Hot</th>
             <th scope="col">Định dạng</th>
             <th scope="col">Phụ đề</th>
@@ -21,6 +24,7 @@
             <th scope="col">Ngày tạo</th>
             <th scope="col">Ngày cập nhật</th>
             <th scope="col">Năm</th>
+            <th scope="col">Top views</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -32,6 +36,7 @@
             <td>
               <img src="{{ asset('/uploads/movie/'.$cate -> image) }}" alt="" width="100">
             </td>
+            <td>{{ $cate -> thoiluong }} phút</td>
             <td>
               @if($cate -> phim_hot == 0)
                 Không
@@ -77,7 +82,22 @@
               'class' => 'select-year form-control',
               'id' => $cate -> id,
               'style' => 'width:85px'
-            ]) !!}</td>
+            ]) !!}
+            </td>
+            <td>
+              {!! Form::select('topview',
+              [
+                '2' => 'Tháng',
+                '1' => 'Tuần',
+                '0' => 'Ngày'
+              ]
+              ,isset($cate -> topview) ? $cate -> topview : '',
+              [
+                'class' => 'form-control select-topview',
+                'id' => $cate -> id,
+                'style' => 'width:100px'
+              ]) !!}
+            </td>
             <td>
               {!! Form::open(
                 [
