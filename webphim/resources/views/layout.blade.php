@@ -14,7 +14,7 @@
     type="image/x-icon" />
   <meta name="revisit-after" content="1 days" />
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-  <title>Phim hay 2021 - Xem phim hay nhất</title>
+  <title>Phim hay 2022 - Xem phim hay nhất</title>
   <meta name="description"
     content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
   <link rel="canonical" href="">
@@ -208,22 +208,22 @@
   <script type='text/javascript' src="{{asset ('js/halimtheme-core.min.js') }}" id='halim-init-js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
   <script>
-    // $('#watch_trailer').click(function(e) {
-    //   e.prevenDefault();
-    //   var aid = $(this).attr('href');
-    //   $('html, body').animate({
-    //     scrollTop: $(aid).offset().top
-    //   }, 'slow');
-    // });
-    $('a[href*="#"]')
-    .not('[href="#"]')
-    .not('[href="#*"]')
-    .click(function(e) {
-        var data_id = $(this).attr('href');
-        $('html, body').animate({
-        scrollTop: $(data_id).offset().top
-        }, '0');
+    $('#watch_trailer').click(function(e) {
+      e.prevenDefault();
+      var aid = $(this).attr('href');
+      $('html, body').animate({
+        scrollTop: $(aid).offset().top
+      }, 'slow');
     });
+    // $('a[href*="#"]')
+    // .not('[href="#"]')
+    // .not('[href="#*"]')
+    // .click(function(e) {
+    //     var data_id = $(this).attr('href');
+    //     $('html, body').animate({
+    //     scrollTop: $(data_id).offset().top
+    //     }, '0');
+    // });
   </script>
   <style>
   #overlay_mb {

@@ -25,7 +25,7 @@
                   @elseif($hot -> resolution == 1)
                     SD
                   @elseif($hot -> resolution == 2)
-                    HDCam
+                    Trailer
                   @elseif($hot -> resolution == 3)
                     Cam
                   @elseif($hot -> resolution == 4)
@@ -78,7 +78,7 @@
                     @elseif($mov -> resolution == 1)
                       SD
                     @elseif($mov -> resolution == 2)
-                      HDCam
+                      Trailer
                     @elseif($mov -> resolution == 3)
                       Cam
                     @elseif($mov -> resolution == 4)
