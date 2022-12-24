@@ -40,13 +40,6 @@
     width: 100%;
   }
   </style>
-  <style>
-  #header .site-title {
-    background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;
-    background-size: contain;
-    text-indent: -9999px;
-  }
-  </style>
 </head>
 
 <body class="home blog halimthemes halimmovies" data-masonry="">
@@ -54,21 +47,21 @@
     <div class="container">
       <div class="row" id="headwrap">
         <div class="col-md-3 col-sm-6 slogan">
-          <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
-          </a>
+          <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</a></p>
         </div>
         <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
           <div class="header-nav">
             <div class="col-xs-12">
-              <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
+              {{-- <form id="search-form-pc" name="halimForm" role="search" action="" method="GET"> --}}
                 <div class="form-group">
-                  <div class="input-group col-xs-12">
-                    <input id="search" type="text" name="s" class="form-control" placeholder="Tìm kiếm..."
+                  <div class="input-group col-xs-12 position-relative">
+                    <input id="timkiem" type="text" name="s" class="form-control" placeholder="Tìm kiếm..."
                       autocomplete="off" required>
-                    <i class="animate-spin hl-spin4 hidden"></i>
+                    <i class="fa-solid fa-magnifying-glass icon-input-group"></i>
                   </div>
                 </div>
-              </form>
+                <ul class="list-group" id="result"></ul>
+              {{-- </form> --}}
               <ul class="ui-autocomplete ajax-results hidden"></ul>
             </div>
           </div>
@@ -206,210 +199,8 @@
   <script type='text/javascript' src="{{asset ('js/bootstrap.min.js') }}" id='bootstrap-js'></script>
   <script type='text/javascript' src="{{asset ('js/owl.carousel.min.js') }}" id='carousel-js'></script>
   <script type='text/javascript' src="{{asset ('js/halimtheme-core.min.js') }}" id='halim-init-js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
-  <script>
-    $('#watch_trailer').click(function(e) {
-      e.prevenDefault();
-      var aid = $(this).attr('href');
-      $('html, body').animate({
-        scrollTop: $(aid).offset().top
-      }, 'slow');
-    });
-    // $('a[href*="#"]')
-    // .not('[href="#"]')
-    // .not('[href="#*"]')
-    // .click(function(e) {
-    //     var data_id = $(this).attr('href');
-    //     $('html, body').animate({
-    //     scrollTop: $(data_id).offset().top
-    //     }, '0');
-    // });
-  </script>
-  <style>
-  #overlay_mb {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 99999;
-    cursor: pointer
-  }
-
-  #overlay_mb .overlay_mb_content {
-    position: relative;
-    height: 100%
-  }
-
-  .overlay_mb_block {
-    display: inline-block;
-    position: relative
-  }
-
-  #overlay_mb .overlay_mb_content .overlay_mb_wrapper {
-    width: 600px;
-    height: auto;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center
-  }
-
-  #overlay_mb .overlay_mb_content .cls_ov {
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    z-index: 999999;
-    font-size: 14px;
-    padding: 4px 10px;
-    border: 1px solid #aeaeae;
-    background-color: rgba(0, 0, 0, 0.7)
-  }
-
-  #overlay_mb img {
-    position: relative;
-    z-index: 999
-  }
-
-  @media only screen and (max-width: 768px) {
-    #overlay_mb .overlay_mb_content .overlay_mb_wrapper {
-      width: 400px;
-      top: 3%;
-      transform: translate(-50%, 3%)
-    }
-  }
-
-  @media only screen and (max-width: 400px) {
-    #overlay_mb .overlay_mb_content .overlay_mb_wrapper {
-      width: 310px;
-      top: 3%;
-      transform: translate(-50%, 3%)
-    }
-  }
-  </style>
-
-  <style>
-  #overlay_pc {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 99999;
-    cursor: pointer;
-  }
-
-  #overlay_pc .overlay_pc_content {
-    position: relative;
-    height: 100%;
-  }
-
-  .overlay_pc_block {
-    display: inline-block;
-    position: relative;
-  }
-
-  #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-    width: 600px;
-    height: auto;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  #overlay_pc .overlay_pc_content .cls_ov {
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    z-index: 999999;
-    font-size: 14px;
-    padding: 4px 10px;
-    border: 1px solid #aeaeae;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  #overlay_pc img {
-    position: relative;
-    z-index: 999;
-  }
-
-  @media only screen and (max-width: 768px) {
-    #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-      width: 400px;
-      top: 3%;
-      transform: translate(-50%, 3%);
-    }
-  }
-
-  @media only screen and (max-width: 400px) {
-    #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-      width: 310px;
-      top: 3%;
-      transform: translate(-50%, 3%);
-    }
-  }
-  </style>
-
-  <style>
-  .float-ck {
-    position: fixed;
-    bottom: 0px;
-    z-index: 9
-  }
-
-  * html .float-ck
-
-  /* IE6 position fixed Bottom */
-    {
-    position: absolute;
-    bottom: auto;
-    top: expression(eval (document.documentElement.scrollTop+document.docum entElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
-  }
-
-  #hide_float_left a {
-    background: #0098D2;
-    padding: 5px 15px 5px 15px;
-    color: #FFF;
-    font-weight: 700;
-    float: left;
-  }
-
-  #hide_float_left_m a {
-    background: #0098D2;
-    padding: 5px 15px 5px 15px;
-    color: #FFF;
-    font-weight: 700;
-  }
-
-  span.bannermobi2 img {
-    height: 70px;
-    width: 300px;
-  }
-
-  #hide_float_right a {
-    background: #01AEF0;
-    padding: 5px 5px 1px 5px;
-    color: #FFF;
-    float: left;
-  }
-  </style>
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script> --}}
+  <script type='text/javascript' src="{{asset ('js/app.js') }}"></script>
 </body>
 
 </html>

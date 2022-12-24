@@ -32,7 +32,7 @@
                       @elseif($day -> resolution == 1)
                         SD
                       @elseif($day -> resolution == 2)
-                        HDCam
+                        Trailer
                       @elseif($day -> resolution == 3)
                         Cam
                       @elseif($day -> resolution == 4)
