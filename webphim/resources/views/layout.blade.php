@@ -52,16 +52,18 @@
         <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
           <div class="header-nav">
             <div class="col-xs-12">
-              {{-- <form id="search-form-pc" name="halimForm" role="search" action="" method="GET"> --}}
-                <div class="form-group">
-                  <div class="input-group col-xs-12 position-relative">
-                    <input id="timkiem" type="text" name="s" class="form-control" placeholder="Tìm kiếm..."
+              <div class="form-group">
+                <div class="input-group col-xs-12 position-relative">
+                  <form id="search-form-pc" name="halimForm" role="search" action="{{ route('tim-kiem') }}" method="GET">
+                    <input id="timkiem" type="text" name="s" class="form-control timkiem" placeholder="Tìm kiếm..."
                       autocomplete="off" required>
-                    <i class="fa-solid fa-magnifying-glass icon-input-group"></i>
-                  </div>
+                    <button class="btn btn-input-group">
+                      <i class="fa-solid fa-magnifying-glass icon-input-group"></i>
+                    </button>
+                  </form>
                 </div>
-                <ul class="list-group" id="result"></ul>
-              {{-- </form> --}}
+              </div>
+              <ul class="list-group" id="result"></ul>
               <ul class="ui-autocomplete ajax-results hidden"></ul>
             </div>
           </div>

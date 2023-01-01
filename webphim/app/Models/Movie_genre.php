@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model
+class Movie_genre extends Model
 {
     public $timestamps = false;
     use HasFactory;
-
-    public function movie() {
-        return $this -> belongsTo(Country::class);
-    }
+    protected $table = 'movie_genre';
 }

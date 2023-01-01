@@ -83,13 +83,12 @@ img:hover {
     background: #1b2d3c;
 }
 #header .site-title {
-    margin: 0;
+    margin: 0px;
     text-indent: -9999px;
     background: url(https://phimhay.lol/wp-content/uploads/2022/11/logo-phimhay.png)
         no-repeat top left;
     background-size: contain;
-    height: 45px;
-    margin-top: -5px;
+    height: 40px;
 }
 #header .site-title a {
     position: absolute;
@@ -5397,9 +5396,28 @@ ul.list-info-group {
 }
 
 .icon-input-group {
+    transition: 0.2s;
+}
+
+.btn-input-group:hover .icon-input-group {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+.btn-input-group {
     position: absolute;
-    top: 10px;
-    left: 15px;
+    top: 1px;
+    right: 1px;
+    background: #12171b;
+    height: 32px;
+    width: 50px;
+    border-radius: 0px 50% 50% 0px;
+    z-index: 20;
+    transition: 0.7s all;
+}
+
+.timkiem:focus + .btn-input-group {
+    border-radius: 0px !important;
 }
 
 #overlay_mb {

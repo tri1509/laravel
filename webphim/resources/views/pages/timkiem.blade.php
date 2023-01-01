@@ -4,17 +4,17 @@
   <div class="halim-panel-filter">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-xs-10">
-            <div class="yoast_breadcrumb hidden-xs">
-              <span><span>
-                <a href="">{{ $genre_slug -> title }}</a>
-                @for ($y = 1995; $y <= 2020; $y ++)  
-                » <span class="breadcrumb_last" aria-current="page">
-                  <a href="{{ url('nam-'.$y) }}" title="Năm {{ $y }}">{{ $y }}</a>
-                </span>
-                @endfor
-              </span></span>
-            </div>
+        <div class="col-xs-12">
+          <div class="yoast_breadcrumb hidden-xs">
+            <span><span>
+              <a href="">{{ $search }}</a> » 
+              @for ($y = 1995; $y <= 2020; $y ++)  
+              » <span class="breadcrumb_last" aria-current="page">
+                <a href="{{ url('nam-'.$y) }}" title="Năm {{ $y }}">{{ $y }}</a>
+              </span>
+              @endfor
+            </span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -25,16 +25,17 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
     <section>
       <div class="section-bar clearfix">
-        <h1 class="section-title"><span>{{ $genre_slug -> title }}</span></h1>
+        <h1 class="section-title"><span>{{ $search }}</span></h1>
       </div>
       <div class="halim_box">
+
         @foreach ($movie as $key => $mov) 
           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
             <div class="halim-item">
-              <a class="halim-thumb" href="{{ route('movie',$mov -> slug) }}" title="{{ $mov -> title }}">
+              <a class="halim-thumb" href="{{ route('movie',$mov -> slug) }}" title="{{ $search }}">
                 <figure><img class="lazy img-responsive"
                     src="{{ asset('/uploads/movie/'.$mov -> image) }}"
-                    alt="{{ $mov -> title }}" title="{{ $mov -> title }}"></figure>
+                    alt="{{ $search }}" title="{{ $search }}"></figure>
                 <span class="status">
                   @if($mov -> resolution == 0)
                     HD
@@ -51,9 +52,9 @@
                 <span class="episode">
                   <i class="fa fa-play" aria-hidden="true"></i>
                   @if($mov -> phude == 0)
-                    Phụ đề - {{ $mov -> sotap }} tập
+                    Phụ đề
                   @else
-                    Thuyết minh - {{ $mov -> sotap }} tập
+                    Thuyết minh
                   @endif
                 </span>
                 <div class="icon_overlay"></div>
@@ -67,6 +68,7 @@
             </div>
           </article>
         @endforeach
+
       </div>
       <div class="clearfix"></div>
       <div class="text-center">
@@ -86,4 +88,4 @@
   @include('pages.inc.sidebar')
 
 </div>
-@endsection('content')
+@endsection

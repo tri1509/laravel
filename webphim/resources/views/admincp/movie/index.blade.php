@@ -13,7 +13,7 @@
             <th scope="col">Tên</th>
             <th scope="col">Hình</th>
             <th scope="col">Thời lượng</th>
-            <th scope="col">Phim Hot</th>
+            <th scope="col">Số tập</th>
             <th scope="col">Định dạng</th>
             <th scope="col">Phụ đề</th>
             <th scope="col">Đường dẫn</th>
@@ -37,13 +37,7 @@
               <img src="{{ asset('/uploads/movie/'.$cate -> image) }}" alt="" width="100">
             </td>
             <td>{{ $cate -> thoiluong }} phút</td>
-            <td>
-              @if($cate -> phim_hot == 0)
-                Không
-              @else
-                Có
-              @endif
-            </td>
+            <td>{{ $cate -> sotap }}</td>
             <td>
               @if($cate -> resolution == 0)
                 HD
@@ -73,7 +67,11 @@
               @endif
             </td>
             <td>{{ $cate -> country -> title }}</td>
-            <td>{{ $cate -> genre -> title }}</td>
+            <td>
+              @foreach ($cate -> movie_genre as $gen)
+              <span class="badge badge-warning">{{ $gen -> title }}</span>
+              @endforeach
+            </td>
             <td>{{ $cate -> category -> title }}</td>
             <td>{{ $cate -> ngaytao }}</td>
             <td>{{ $cate -> ngaycapnhat }}</td>
