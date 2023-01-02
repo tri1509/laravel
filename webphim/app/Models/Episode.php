@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Episode extends Model
 {
+    protected $table = 'episodes';
+    public $timestamps = false;
     use HasFactory;
 }

@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('category.create') }}">Danh mục phim</a>
+        <a class="nav-link" href="{{ route('category.create') }}">Danh mục</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('genre.create') }}">Thể Loại</a>
@@ -20,9 +20,6 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('episode.create') }}">Tập phim</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

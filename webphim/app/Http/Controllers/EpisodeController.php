@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Movie;
+use App\Models\Episode;
+
+
 class EpisodeController extends Controller
 {
     /**
@@ -11,9 +15,19 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function select_movie()
+    {
+        $id = $_GET['id'];
+        $movie= Movie::find($id);
+        $output = '<option value="selected">----Chọn tập phim----</option>';
+        for($i=1; $i<=$movie->sotap; $i++){
+            $output .= '<option value="'.$i.'">'.$i.'</option>';
+        }
+        return $output;
+    }
+    
     public function index()
     {
-        //
     }
 
     /**
@@ -23,7 +37,8 @@ class EpisodeController extends Controller
      */
     public function create()
     {
-        //
+        $list_movie = Movie::orderBy('id','DESC') -> pluck('title','id');
+        return view('admincp.episode.form',compact('list_movie'));
     }
 
     /**
@@ -34,7 +49,13 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request -> all();
+        $episode = new Episode();
+        $episode -> movie_id = $data['movie_id'];
+        $episode -> link = $data['link'];
+        $episode -> episode = $data['episode'];
+        $episode -> save();
+        return redirect() -> back();
     }
 
     /**

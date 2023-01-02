@@ -173,6 +173,18 @@ function ChangeToSlug() {
         }
       });
     });
+
+    $('.select-movie').change(function(){
+    var id = $(this).find(':selected').val();
+    $.ajax({
+      url: "{{ route('select-movie') }}",
+      method: "GET",
+      data: { id: id},
+      success: function(data) {
+        $("#episode").html(data);
+      }
+      });
+    })
   });
 </script>
 </html>
