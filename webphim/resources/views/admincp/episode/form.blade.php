@@ -16,7 +16,7 @@
           @if (!isset($episode))
           {!! Form::open(['route' => 'episode.store','method' => 'post']) !!}
           @else 
-          {!! Form::open(['route' => ['episode.update',$episode -> movie_id],'method' => 'put']) !!}
+          {!! Form::open(['route' => ['episode.update',$episode -> id],'method' => 'put']) !!}
           @endif
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -32,12 +32,24 @@
 
           <div class="row">
             <div class="col-sm-4 col-12">
-              <div class = "input-group mb-3">
-                <div class="input-group-prepend">
-                  {!! Form::label('episode' , 'Tập phim' , ['class' => 'input-group-text']) !!}
+              @if (!isset($episode)) 
+                <div class = "input-group mb-3">
+                  <div class="input-group-prepend">
+                    {!! Form::label('episode' , 'Tập phim' , ['class' => 'input-group-text']) !!}
+                  </div>
+                  <select name="episode" class="custom-select" id="episode"></select>
                 </div>
-                <select name="episode" class="custom-select" id="episode"></select>
-              </div>
+              @else
+                <div class = "input-group mb-3">
+                  {!! Form::label('episode' , 'Tập phim' , ['class' => 'input-group-text']) !!}
+                  {!! Form::text('episode' , isset($episode) ? $episode -> episode : '' , 
+                    [
+                      'class' => 'form-control',
+                      'readonly' => 'readonly'
+                    ]
+                  ) !!}
+                </div>
+              @endif
             </div>
             <div class="col-sm-8 col-12">
               <div class="input-group mb-3">

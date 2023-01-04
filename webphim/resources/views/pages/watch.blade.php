@@ -31,11 +31,14 @@
     <section id="content" class="test">
       <div class="clearfix wrap-content">
 
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/r958O404e4U" title="YouTube video player"
+        {{-- <iframe width="100%" height="500" src="https://www.youtube.com/embed/r958O404e4U" title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-          {{-- {{ $movie -> episode -> link }} --}}
+          allowfullscreen></iframe> --}}
+          
+          @foreach ($movie -> episode as $ep) 
+            {!! $ep -> link !!}
+          @endforeach
 
         <div class="button-watch">
           <ul class="halim-social-plugin col-xs-4 hidden-xs">
@@ -93,29 +96,31 @@
         <div id="halim-list-server">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active server-1"><a href="#server-0" aria-controls="server-0" role="tab"
-                data-toggle="tab"><i class="hl-server"></i> Vietsub</a></li>
+                data-toggle="tab"><i class="hl-server"></i>
+                @if($movie -> resolution == 0)HD
+                @elseif($movie -> resolution == 1)SD
+                @elseif($movie -> resolution == 2)Trailer
+                @elseif($movie -> resolution == 3)Cam
+                @elseif($movie -> resolution == 4)FullHD
+                @endif
+              </a></li>
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
               <div class="halim-server">
                 <ul class="halim-list-eps">
-                  <a href="{{route('episode')}}">
-                    <li class="halim-episode">
-                      <span class="halim-btn halim-btn-2 active halim-info-1-1 box-shadow" data-post-id="37976"
-                        data-server="1" data-episode="1" data-position="first" data-embed="0"
-                        data-title="Xem phim Tôi Và Chúng Ta Ở Bên Nhau - Tập 1 - Be Together - vietsub + Thuyết Minh"
-                        data-h1="Tôi Và Chúng Ta Ở Bên Nhau - tập 1">1</span>
-                    </li>
-                  </a>
-                  <a href="{{route('episode')}}">
-                    <li class="halim-episode">
-                      <span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow" data-post-id="37976" data-server="1"
-                        data-episode="2" data-position="" data-embed="0"
-                        data-title="Xem phim Tôi Và Chúng Ta Ở Bên Nhau - Tập 2 - Be Together - vietsub + Thuyết Minh"
-                        data-h1="Tôi Và Chúng Ta Ở Bên Nhau - tập 2">2</span>
-                    </li>
-                  </a>
-
+                  @foreach ($movie -> episode as $key => $sotap) 
+                    <a href="{{route('so-tap')}}">
+                      <li class="halim-episode">
+                        <span class="halim-btn halim-btn-2 {{ $key == 0 ? 'active' : '' }} halim-info-1-1 box-shadow" data-post-id="37976"
+                          data-server="1" data-episode="1" data-position="first" data-embed="0"
+                          data-title="Xem phim {{ $movie -> title }} - {{ $movie -> name_eng }} - {{ $movie -> genre -> title }} - {{ $movie -> country -> title }} - {{ $movie -> category -> title }}"
+                          data-h1="{{ $movie -> title }} - tập {{ $sotap -> episode }}">
+                          {{ $sotap -> episode }}
+                        </span>
+                      </li>
+                    </a>
+                  @endforeach
                 </ul>
                 <div class="clearfix"></div>
               </div>

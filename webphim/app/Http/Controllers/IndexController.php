@@ -130,12 +130,14 @@ class IndexController extends Controller
         $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $country = Country::orderBy('id','DESC') -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
-        $movie = Movie::with('category','genre','country','movie_genre') -> where('slug',$slug) -> where('status', 1) -> first();
+        $movie = Movie::with('category','genre','country','movie_genre','episode') -> where('slug',$slug) -> where('status', 1) -> first();
         $related = Movie::with('category','genre','country') -> where('category_id',$movie -> category -> id) -> orderBy(DB::raw('RAND()')) -> whereNotIn('slug',[$slug]) -> get();
         $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
         $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
         $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
         $phim_trailer = Movie::all() -> where('resolution', '2')-> where('status', 1) -> take('15');
+        // return response()->json($movie);
+
         return view('pages.watch',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang','phim_trailer'));
     }
     public function episode() {

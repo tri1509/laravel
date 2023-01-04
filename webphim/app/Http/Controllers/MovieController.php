@@ -186,7 +186,7 @@ class MovieController extends Controller
         }
         $movie -> save();
         $movie -> movie_genre() -> sync($data['genre']);
-        return redirect() -> route('movie.index');;
+        return redirect() -> route('movie.index');
     }
 
     /**

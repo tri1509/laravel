@@ -28,6 +28,9 @@ class EpisodeController extends Controller
     
     public function index()
     {
+        $list_episode = Episode::with('movie') -> orderBy('movie_id','DESC') -> get();
+        return view('admincp.episode.index',compact('list_episode'));
+        // return response()->json($list_episode);
     }
 
     /**
@@ -77,7 +80,9 @@ class EpisodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $list_movie = Movie::orderBy('id','DESC') -> pluck('title','id');
+        $episode = Episode::find($id);
+        return view('admincp.episode.form',compact('episode','list_movie'));
     }
 
     /**
@@ -89,7 +94,13 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request -> all();
+        $episode = Episode::find($id);
+        $episode -> movie_id = $data['movie_id'];
+        $episode -> link = $data['link'];
+        $episode -> episode = $data['episode'];
+        $episode -> save();
+        return redirect() -> route('episode.index');
     }
 
     /**

@@ -10,4 +10,8 @@ class Episode extends Model
     protected $table = 'episodes';
     public $timestamps = false;
     use HasFactory;
+
+    public function movie() {
+        return $this -> belongsTo(Movie::class);
+    }
 }
