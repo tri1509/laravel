@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Country;
 use App\Models\Movie_Genre;
+use App\Models\Episode;
 use Carbon\Carbon;
 use Storage;
 use File;
@@ -87,6 +88,7 @@ class MovieController extends Controller
         $movie -> phim_hot = $data['phim_hot'];
         $movie -> resolution = $data['resolution'];
         $movie -> name_eng = $data['name_eng'];
+        $movie -> actor = $data['actor'];
         $movie -> phude = $data['phude'];
         $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> ngaycapnhat = Carbon::now('asia/Ho_Chi_Minh');
@@ -162,6 +164,7 @@ class MovieController extends Controller
         $movie -> slug = $data['slug'];
         $movie -> phim_hot = $data['phim_hot'];
         $movie -> resolution = $data['resolution'];
+        $movie -> actor = $data['actor'];
         $movie -> name_eng = $data['name_eng'];
         $movie -> phude = $data['phude'];
         $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
@@ -204,8 +207,12 @@ class MovieController extends Controller
         }
         // Xoá thể loại
         Movie_Genre::whereIn('movie_id',[$movie -> id]) -> delete();
+        // Xoá tập phim
+        Episode::whereIn('movie_id',[$movie -> id]) -> delete();
+        
         $movie -> delete();
         return redirect() -> back();
+        
     }
 
     public function resorting(Request $request)

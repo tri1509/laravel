@@ -71,7 +71,7 @@
                     @elseif($movie -> resolution == 1)
                       SD
                     @elseif($movie -> resolution == 2)
-                      HDCam
+                      Trailer
                     @elseif($movie -> resolution == 3)
                       Cam
                     @elseif($movie -> resolution == 4)
@@ -118,18 +118,17 @@
                     {{ $movie -> country -> title }}
                   </a>
                 </li>
-                <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow"
-                    href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
                 <li class="list-info-group-item last-item"
                   style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
-                  <span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href=""
-                    rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow"
-                    title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever
-                    Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href=""
-                    rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow"
-                    title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle
-                    Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href=""
-                    rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a>
+                  <span>Diễn viên</span> : 
+                  @php
+                    $actors = array();
+                    $actors = explode(',',$movie -> actor);
+                  @endphp
+    
+                  @foreach ($actors as $actor) 
+                    <a href="" rel="nofollow" title="{{ $actor }}">{{ $actor }}</a>,
+                  @endforeach
                 </li>
               </ul>
               <div class="movie-trailer hidden"></div>

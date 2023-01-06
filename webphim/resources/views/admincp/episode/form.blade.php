@@ -45,7 +45,7 @@
                   {!! Form::text('episode' , isset($episode) ? $episode -> episode : '' , 
                     [
                       'class' => 'form-control',
-                      'readonly' => 'readonly'
+                      isset($episode) ? 'readonly' : '',
                     ]
                   ) !!}
                 </div>

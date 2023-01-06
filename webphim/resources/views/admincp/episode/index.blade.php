@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
   <div class="text-center container">
-    <a href="{{ route('movie.create') }}" class="btn btn-primary" style="width:100%">Quản lý tập phim</a>
+    <a href="{{ route('episode.create') }}" class="btn btn-primary" style="width:100%">Thêm tập phim</a>
   </div>
   <div class="row justify-content-center">
     <div class="col-md-12">

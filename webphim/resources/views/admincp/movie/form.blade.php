@@ -138,6 +138,16 @@
                 ) !!}
               </div>
               <div class = "form-group">
+                {!! Form::label('actor' , 'Diễn viên' , []) !!}
+                {!! Form::text('actor' , isset($movie) ? $movie -> actor : '' , 
+                  [
+                    'class' => 'form-control',
+                    'placeholder' => 'Cách nhau bởi dấu phẩy " , "',
+                    'id' => 'actor',
+                  ]
+                ) !!}
+              </div>
+              <div class = "form-group">
                 {!! Form::label('status' , 'Trạng thái' , []) !!}
                 {!! Form::select('status',
                 [
