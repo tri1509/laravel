@@ -93,6 +93,7 @@ class MovieController extends Controller
         $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> ngaycapnhat = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> thoiluong = $data['thoiluong'];
+        $movie -> thuocphim = $data['thuocphim'];
         $movie -> tags = $data['tags'];
 
         foreach ($data['genre'] as $item => $gen){
@@ -168,6 +169,7 @@ class MovieController extends Controller
         $movie -> name_eng = $data['name_eng'];
         $movie -> phude = $data['phude'];
         $movie -> ngaytao = Carbon::now('asia/Ho_Chi_Minh');
+        $movie -> thuocphim = $data['thuocphim'];
         $movie -> ngaycapnhat = Carbon::now('asia/Ho_Chi_Minh');
         $movie -> thoiluong = $data['thoiluong'];
         $movie -> tags = $data['tags'];

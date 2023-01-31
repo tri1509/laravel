@@ -31,14 +31,6 @@
     <section id="content" class="test">
       <div class="clearfix wrap-content">
         <div class="halim-movie-wrapper">
-          <div class="title-block">
-            <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="38424">
-              <div class="halim-pulse-ring"></div>
-            </div>
-            <div class="title-wrapper" style="font-weight: bold;">
-              Bookmark
-            </div>
-          </div>
           <div class="movie_info col-xs-12">
             <div class="movie-poster col-md-3">
               <img class="movie-thumb"
@@ -46,9 +38,15 @@
                 alt="{{ $movie -> title }}">
               <div class="bwa-content">
                 <div class="loader"></div>
-                <a href="{{route('watch',$movie -> slug)}}" class="bwac-btn">
-                  <i class="fa fa-play"></i>
-                </a>
+                @if ($episode_current_list_count > 1)
+                  <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
+                    <i class="fa fa-play"></i>
+                  </a>
+                @else
+                  <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
+                    <i class="fa fa-play"></i>
+                  </a>
+                @endif
               </div>
               @if ($movie -> trailer != NULL) 
                 <a href="#watch_trailer" class="btn btn-info" style="display:block">Xem trailer</a>
@@ -87,15 +85,18 @@
                   </span>
                   </li>
                 <li class="list-info-group-item">
-                  <span>Điểm IMDb</span> : 
-                  <span class="imdb">7.2</span>
-                </li>
-                <li class="list-info-group-item">
                   <span>Thời lượng</span> : {{ $movie -> thoiluong }} Phút
                 </li>
-                <li class="list-info-group-item">
-                  <span>Số tập</span> : {{ $movie -> sotap }}/{{ $movie -> sotap }}
-                </li>
+                @if ($movie -> thuocphim != "phim lẻ" )
+                  <li class="list-info-group-item">
+                    <span>Số tập</span> : {{ $episode_current_list_count }} / {{ $movie -> sotap }} - 
+                    @if ($episode_current_list_count == $movie -> sotap ) 
+                      hoàn thành
+                    @else
+                      đang cập nhật
+                    @endif
+                  </li>
+                @endif
                 <li class="list-info-group-item">
                   <span>Danh mục</span> :
                   <a href="{{route('category',$movie -> category -> slug)}}" rel="category tag">
@@ -104,13 +105,14 @@
                 </li>
                 <li class="list-info-group-item">
                   <span>Thể loại</span> : 
-                  
                   @foreach ($movie -> movie_genre as $gen)
                     <a href="{{route('genre',$gen -> slug)}}" rel="category tag">
                       {{ $gen -> title }},
                     </a>
                   @endforeach
-                
+                  <a href="" rel="category tag">
+                    {{ $movie -> thuocphim }}
+                  </a>
                 </li>
                 <li class="list-info-group-item">
                   <span>Quốc gia</span> : 

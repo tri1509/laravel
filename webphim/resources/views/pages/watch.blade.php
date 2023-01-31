@@ -30,16 +30,9 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
     <section id="content" class="test">
       <div class="clearfix wrap-content">
-
-        {{-- <iframe width="100%" height="500" src="https://www.youtube.com/embed/r958O404e4U" title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe> --}}
-          
-          @foreach ($movie -> episode as $ep) 
-            {!! $ep -> link !!}
-          @endforeach
-
+        <div class="iframe_phim">
+          {!! $episode -> link !!}
+        </div>
         <div class="button-watch">
           <ul class="halim-social-plugin col-xs-4 hidden-xs">
             <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small"
@@ -48,21 +41,18 @@
           <ul class="col-xs-12 col-md-8">
             <div id="autonext" class="btn-cs autonext">
               <i class="icon-autonext-sm"></i>
-              <span><i class="hl-next"></i> Autonext: <span id="autonext-status">On</span></span>
+              <span><i class="fa-solid fa-forward"></i> Autonext: <span id="autonext-status">On</span></span>
             </div>
-            <div id="explayer" class="hidden-xs"><i class="hl-resize-full"></i>
+            <div id="explayer" class="hidden-xs"><i class="fa-solid fa-expand"></i>
               Expand
             </div>
-            <div id="toggle-light"><i class="hl-adjust"></i>
+            <div id="toggle-light"><i class='fa-solid fa-lightbulb'></i>
               Light Off
             </div>
-            <div id="report" class="halim-switch"><i class="hl-attention"></i> Report</div>
-            <div class="luotxem"><i class="hl-eye"></i>
-              <span>1K</span> lượt xem
-            </div>
+            <div id="report" class="halim-switch"><i class="fa-solid fa-flag"></i> Report</div>
             <div class="luotxem">
               <a class="visible-xs-inline" data-toggle="collapse" href="#moretool" aria-expanded="false"
-                aria-controls="moretool"><i class="hl-forward"></i> Share</a>
+                aria-controls="moretool"><i class="fa-solid fa-share"></i> Share</a>
             </div>
           </ul>
         </div>
@@ -73,17 +63,11 @@
             <div class="fb-save" data-uri="" data-size="small"></div>
           </ul>
         </div>
-
         <div class="clearfix"></div>
         <div class="clearfix"></div>
         <div class="title-block">
-          <a href="javascript:;" data-toggle="tooltip" title="Add to bookmark">
-            <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="37976">
-              <div class="halim-pulse-ring"></div>
-            </div>
-          </a>
           <div class="title-wrapper-xem full">
-            <h1 class="entry-title"><a href="" title="{{ $movie -> title }}" class="tl">{{ $movie -> title }} tập 1</a></h1>
+            <h1 class="entry-title"><a href="" title="{{ $movie -> title }}" class="tl">{{ $movie -> title }}</a></h1>
           </div>
         </div>
         <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
@@ -109,17 +93,17 @@
             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
               <div class="halim-server">
                 <ul class="halim-list-eps">
-                  @foreach ($movie -> episode as $key => $sotap) 
-                    <a href="{{route('so-tap')}}">
-                      <li class="halim-episode">
-                        <span class="halim-btn halim-btn-2 {{ $key == 0 ? 'active' : '' }} halim-info-1-1 box-shadow" data-post-id="37976"
-                          data-server="1" data-episode="1" data-position="first" data-embed="0"
-                          data-title="Xem phim {{ $movie -> title }} - {{ $movie -> name_eng }} - {{ $movie -> genre -> title }} - {{ $movie -> country -> title }} - {{ $movie -> category -> title }}"
-                          data-h1="{{ $movie -> title }} - tập {{ $sotap -> episode }}">
-                          {{ $sotap -> episode }}
-                        </span>
-                      </li>
-                    </a>
+                  @foreach ($movie -> episode as $key => $sotap)
+                      <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$sotap -> episode)}}">
+                        <li class="halim-episode">
+                          <span class="halim-btn halim-btn-2 {{ $tapphim == $sotap -> episode ? 'active' : '' }} halim-info-1-1 box-shadow" data-post-id="37976"
+                            data-server="1" data-episode="1" data-position="first" data-embed="0"
+                            data-title="Xem phim {{ $movie -> title }} - {{ $movie -> name_eng }} - {{ $movie -> genre -> title }} - {{ $movie -> country -> title }} - {{ $movie -> category -> title }}"
+                            data-h1="{{ $movie -> title }} - tập {{ $sotap -> episode }}">
+                            {{ $sotap -> episode }}
+                          </span>
+                        </li>
+                      </a>
                   @endforeach
                 </ul>
                 <div class="clearfix"></div>
@@ -216,4 +200,4 @@
   </main>
   @include('pages.inc.sidebar')
 </div>
-@endsection('content')
+@endsection()

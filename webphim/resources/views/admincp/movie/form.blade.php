@@ -74,6 +74,16 @@
                   ]
                 ) !!}
               </div>
+              <div class = "form-group">
+                {!! Form::label('trailer' , 'Trailer' , []) !!}
+                {!! Form::text('trailer' , isset($movie) ? $movie -> trailer : '' , 
+                  [
+                    'class' => 'form-control',
+                    'placeholder' => 'Nhập vào dữ liệu....',
+                    'id' => 'trailer',
+                  ]
+                ) !!}
+              </div>
             </div>
   
             <div class="col-6">
@@ -127,16 +137,7 @@
                   </div>
                 </div>
               </div>
-              <div class = "form-group">
-                {!! Form::label('trailer' , 'Trailer' , []) !!}
-                {!! Form::text('trailer' , isset($movie) ? $movie -> trailer : '' , 
-                  [
-                    'class' => 'form-control',
-                    'placeholder' => 'Nhập vào dữ liệu....',
-                    'id' => 'trailer',
-                  ]
-                ) !!}
-              </div>
+              
               <div class = "form-group">
                 {!! Form::label('actor' , 'Diễn viên' , []) !!}
                 {!! Form::text('actor' , isset($movie) ? $movie -> actor : '' , 
@@ -146,6 +147,19 @@
                     'id' => 'actor',
                   ]
                 ) !!}
+              </div>
+              <div class = "form-group">
+                {!! Form::label('thuocphim' , 'Thuộc thể loại phim' , []) !!}
+                {!! Form::select('thuocphim',
+                [
+                  'phim lẻ' => 'Phim Lẻ',
+                  'phim bộ' => 'Phim Bộ'
+                ]
+                ,isset($movie) ? $movie -> thuocphim : '',
+                [
+                  'class' => 'form-control',
+                  'aria-label' => 'Default select example'
+                ]) !!}
               </div>
               <div class = "form-group">
                 {!! Form::label('status' , 'Trạng thái' , []) !!}

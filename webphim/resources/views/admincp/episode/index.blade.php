@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <div class="text-center container">
+  <div class="text-center container mb-3 mt-3">
     <a href="{{ route('episode.create') }}" class="btn btn-primary" style="width:100%">Thêm tập phim</a>
   </div>
   <div class="row justify-content-center">
@@ -20,9 +20,9 @@
         @foreach($list_episode as $key => $episode)
           <tr id="{{ $episode -> id }}">
             <th scope="row">{{$key}}</th>
-            <td>{{$episode -> movie -> title}}</td>
-            <td>{{$episode -> episode}}</td>
-            <td>{!! $episode -> link !!}</td>
+            <td class='font-weight-bold text-info'>{{$episode -> movie -> title}}</td>
+            <td class="badge badge-warning">{{$episode -> episode}}</td>
+            <td width='100'>{{$episode -> link}}</td>
             <td style="display:flex">
               {!! Form::open(
                 [

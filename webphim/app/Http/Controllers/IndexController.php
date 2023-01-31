@@ -118,14 +118,17 @@ class IndexController extends Controller
         $country = Country::orderBy('id','DESC') -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
         $movie = Movie::with('category','genre','country','movie_genre') -> where('slug',$slug) -> where('status', 1) -> first();
+        $episode_first = Episode::with('movie') -> where('movie_id', $movie -> id) -> orderBy('episode','ASC') -> take(1) -> first();
         $related = Movie::with('category','genre','country') -> where('category_id',$movie -> category -> id) -> orderBy(DB::raw('RAND()')) -> whereNotIn('slug',[$slug]) -> get();
         $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
         $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
         $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
         $phim_trailer = Movie::all() -> where('resolution', '2')-> where('status', 1) -> take('15');
-        return view('pages.movie',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang','phim_trailer'));
+        $episode_current_list = Episode::with('movie') -> where('movie_id', $movie -> id) -> get();
+        $episode_current_list_count = $episode_current_list -> count();
+        return view('pages.movie',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang','phim_trailer','episode_first','episode_current_list_count'));
     }
-    public function watch($slug) {
+    public function watch($slug,$tap) {
         $category = Category::orderBy('id','DESC') -> get();
         $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $country = Country::orderBy('id','DESC') -> get();
@@ -136,9 +139,15 @@ class IndexController extends Controller
         $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
         $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
         $phim_trailer = Movie::all() -> where('resolution', '2')-> where('status', 1) -> take('15');
-        // return response()->json($movie);
-
-        return view('pages.watch',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang','phim_trailer'));
+        if(isset($tap)){
+            $tapphim = $tap;
+            $tapphim = substr($tap,4,7);
+            $episode = Episode::where('movie_id', $movie -> id) -> where('episode', $tapphim) -> first();
+        }else{
+            $tapphim = 'phim-le';
+            $episode = Episode::where('movie_id', $movie -> id) -> where('episode', $tapphim) -> first();
+        }
+        return view('pages.watch',compact('category','country','genre','movie','related','phim_hot_sidebar','topview_day','topview_tuan','topview_thang','phim_trailer','episode','tapphim'));
     }
     public function episode() {
         return view('pages.episode');

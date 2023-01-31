@@ -14,21 +14,20 @@
     type="image/x-icon" />
   <meta name="revisit-after" content="1 days" />
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-  <title>Phim hay 2022 - Xem phim hay nhất</title>
+  <title>Phim hay 2023 - Xem phim hay nhất</title>
   <meta name="description"
-    content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
+    content="Phim hay 2023 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
   <link rel="canonical" href="">
   <link rel="next" href="" />
   <meta property="og:locale" content="vi_VN" />
-  <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
+  <meta property="og:title" content="Phim hay 2023 - Xem phim hay nhất" />
   <meta property="og:description"
-    content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
+    content="Phim hay 2023 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
   <meta property="og:url" content="" />
   <meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
   <meta property="og:image" content="" />
   <meta property="og:image:width" content="300" />
   <meta property="og:image:height" content="55" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel='dns-prefetch' href='//s.w.org' />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link rel='stylesheet' id='bootstrap-css' href="{{ asset('css/bootstrap.min.css') }}" media='all' />

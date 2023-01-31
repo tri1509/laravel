@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-  <div class="text-center container">
+  <div class="text-center container mb-3 mt-3">
     <a href="{{ route('movie.create') }}" class="btn btn-primary" style="width:100%">Thêm phim</a>
   </div>
   <div class="row justify-content-center">
@@ -21,8 +21,6 @@
             <th scope="col">Quốc gia</th>
             <th scope="col">Thể loại</th>
             <th scope="col">Danh mục</th>
-            <th scope="col">Ngày tạo</th>
-            <th scope="col">Ngày cập nhật</th>
             <th scope="col">Năm</th>
             <th scope="col">Top views</th>
             <th scope="col">Action</th>
@@ -68,13 +66,12 @@
             </td>
             <td>{{ $cate -> country -> title }}</td>
             <td>
+              <span class="badge badge-info">{{ $cate -> thuocphim }}</span>
               @foreach ($cate -> movie_genre as $gen)
               <span class="badge badge-warning">{{ $gen -> title }}</span>
               @endforeach
             </td>
             <td>{{ $cate -> category -> title }}</td>
-            <td>{{ $cate -> ngaytao }}</td>
-            <td>{{ $cate -> ngaycapnhat }}</td>
             <td>{!! Form::selectYear('year',1995,2020, isset($cate -> year) ? $cate -> year : '',
             [
               'class' => 'select-year form-control',

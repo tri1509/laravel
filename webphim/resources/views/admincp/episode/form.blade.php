@@ -25,7 +25,7 @@
             {!! Form::select('movie_id',
             [
               '0' => 'Chọn Phim',
-              'Phim' => $list_movie
+              'Phim' => $list_movie,
             ],isset($episode) ? $episode -> movie_id : '',
             ['class' => 'custom-select select-movie',]) !!}
           </div>
