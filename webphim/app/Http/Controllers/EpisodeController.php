@@ -15,6 +15,22 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function edit_episode($id)
+    {
+        $movie = Movie::find($id);
+        $list_episode = Episode::with('movie') -> where('movie_id',$id) -> get();
+        return view('admincp.episode.edit-episode',compact('list_episode','movie'));
+    }
+
+    public function add_episode($id)
+    {
+        $movie = Movie::find($id);
+        $list_episode = Episode::with('movie') -> where('movie_id',$id) -> orderBy('episode','DESC') -> get();
+        $tap_cao_nhat = Episode::with('movie') -> where('movie_id',$id) -> orderBy('episode','DESC') -> first();
+        return view('admincp.episode.add-episode',compact('list_episode','movie','tap_cao_nhat'));
+    }
+    
     public function select_movie()
     {
         $id = $_GET['id'];
@@ -25,7 +41,7 @@ class EpisodeController extends Controller
                 $output .= '<option value="'.$i.'">'.$i.'</option>';
             }
         }else{
-            $output = '<option value="phim-le">Phim 1 tập</option>';
+            $output = '<option value="0">Phim 1 tập</option>';
         }
         return $output;
     }

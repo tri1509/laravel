@@ -59,7 +59,7 @@
                 <div class="icon_overlay"></div>
                 <div class="halim-post-title-box">
                   <div class="halim-post-title ">
-                    <p class="entry-title">{{ $mov -> title }}</p>
+                    <p class="entry-title text-capitalize">{{ $mov -> title }}</p>
                     <p class="original_title">{{ $mov -> name_eng }}</p>
                   </div>
                 </div>

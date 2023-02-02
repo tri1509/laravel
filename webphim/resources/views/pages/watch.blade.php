@@ -30,9 +30,7 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
     <section id="content" class="test">
       <div class="clearfix wrap-content">
-        <div class="iframe_phim">
-          {!! $episode -> link !!}
-        </div>
+        <div class="col-xs-12 iframe_phim">{!! $episode -> link !!}</div>
         <div class="button-watch">
           <ul class="halim-social-plugin col-xs-4 hidden-xs">
             <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small"

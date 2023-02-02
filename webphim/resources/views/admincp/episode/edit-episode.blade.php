@@ -21,8 +21,7 @@
           <tr id="{{ $episode -> id }}">
             <th scope="row">{{$key}}</th>
             <td class='font-weight-bold text-info'>{{$episode -> movie -> title}}</td>
-            <td class="badge badge-secondary">
-
+            <td class="badge badge-warning">
               @if ($episode -> episode == 0)
               Phim lẻ
               @else
@@ -52,4 +51,3 @@
   </div>
 </div>
 @endsection
-

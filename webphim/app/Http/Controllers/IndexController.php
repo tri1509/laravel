@@ -36,7 +36,7 @@ class IndexController extends Controller
         $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
         $genre = Genre::orderBy('id','DESC') -> get();
         $country = Country::orderBy('id','DESC') -> get();
-        $category_home = Category::with('movie') -> orderBy('id','DESC') -> where('status', 1) -> get();
+        $category_home = Category::with('movie') -> where('status', 1) -> orderBy('id','ASC') -> get();
         $phim_hot = Movie::all() -> where('phim_hot', 1)-> where('status', 1);
         $phim_hot_sidebar = Movie::all() -> where('phim_hot', 1)-> where('status', 1) -> take('10');
         $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
@@ -151,5 +151,17 @@ class IndexController extends Controller
     }
     public function episode() {
         return view('pages.episode');
+    }
+    public function footage($slug) {
+        $topview_day = Movie::all() -> where('topview', 0)-> where('status', 1) -> take('10');
+        $topview_tuan = Movie::all() -> where('topview', 1)-> where('status', 1) -> take('10');
+        $topview_thang = Movie::all() -> where('topview', 2)-> where('status', 1) -> take('10');
+        $phim_trailer = Movie::all() -> where('resolution', '2')-> where('status', 1) -> take('15');
+        $category = Category::orderBy('id','DESC') -> where('status', 1) -> get();
+        $genre = Genre::orderBy('id','DESC') -> get();
+        $country = Country::orderBy('id','DESC') -> get();
+        $movie = Movie::where('thuocphim','LIKE', '%'.$slug.'%') -> paginate(40);
+        $footage = $slug;
+        return view('pages.footage',compact('footage','category','country','genre','movie','topview_day','topview_tuan','topview_thang','phim_trailer'));
     }
 }

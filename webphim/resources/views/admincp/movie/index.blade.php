@@ -6,17 +6,18 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <table class="table table-striped table-hover align-middle" id="table-phim">
+      <table class="table table-striped table-hover" id="table-phim">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Tên</th>
+            <th scope="col">Tên phim</th>
+            <th scope="col">Tập phim</th>
+            <th scope="col">Số tập</th>
             <th scope="col">Hình</th>
             <th scope="col">Thời lượng</th>
-            <th scope="col">Số tập</th>
             <th scope="col">Định dạng</th>
             <th scope="col">Phụ đề</th>
-            <th scope="col">Đường dẫn</th>
+            <th scope="col">Đường<br> dẫn</th>
             <th scope="col">Active</th>
             <th scope="col">Quốc gia</th>
             <th scope="col">Thể loại</th>
@@ -32,10 +33,17 @@
             <th scope="row">{{$key}}</th>
             <td>{{$cate -> title}}</td>
             <td>
-              <img src="{{ asset('/uploads/movie/'.$cate -> image) }}" alt="" width="100">
+              @if ($cate -> sotap > 1) 
+                <a href="{{ route('add-episode',$cate -> id) }}" class="btn btn-sm btn-secondary">Thêm<br>tập<br>phim</a>
+              @else
+                <a href="{{ route('edit-episode',$cate -> id) }}" class="btn btn-sm btn-secondary">Sửa<br>tập<br>phim</a>
+              @endif
+            </td>
+            <td>{{ $cate -> episode_count }}/{{ $cate -> sotap }} tập </td>
+            <td>
+              <img src="{{ asset('/uploads/movie/'.$cate -> image) }}" alt="" width="80">
             </td>
             <td>{{ $cate -> thoiluong }} phút</td>
-            <td>{{ $cate -> sotap }}</td>
             <td>
               @if($cate -> resolution == 0)
                 HD
@@ -66,9 +74,9 @@
             </td>
             <td>{{ $cate -> country -> title }}</td>
             <td>
-              <span class="badge badge-info">{{ $cate -> thuocphim }}</span>
+              <span class="badge badge-info">{{ $cate -> thuocphim }}</span><br>
               @foreach ($cate -> movie_genre as $gen)
-              <span class="badge badge-warning">{{ $gen -> title }}</span>
+              <span class="badge badge-warning">{{ $gen -> title }}</span><br>
               @endforeach
             </td>
             <td>{{ $cate -> category -> title }}</td>

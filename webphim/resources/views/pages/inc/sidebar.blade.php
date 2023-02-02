@@ -40,15 +40,10 @@
                       @endif
                     </span>
                   </div>
-                  <p class="title">{{ $day -> title }}</p>
+                  <p class="title text-capitalize">{{ $day -> title }}</p>
                 </a>
-                <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                <div style="float: left;">
-                  <span class="user-rate-image post-large-rate stars-large-vang"
-                    style="display: block;/* width: 100%; */">
-                    <span style="width: 0%"></span>
-                  </span>
-                </div>
+                <div class="viewsCount" style="color: #9d9d9d;">({{ $day -> category -> title }})</div>
+                <div class="viewsCount" style="color: #9d9d9d;">{{ $day -> sotap }} tập</div>
               </div>
             @endforeach
 
@@ -77,15 +72,10 @@
                       @endif
                     </span>
                   </div>
-                  <p class="title">{{ $tuan -> title }}</p>
+                  <p class="title text-capitalize">{{ $tuan -> title }}</p>
                 </a>
-                <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                <div style="float: left;">
-                  <span class="user-rate-image post-large-rate stars-large-vang"
-                    style="display: block;/* width: 100%; */">
-                    <span style="width: 0%"></span>
-                  </span>
-                </div>
+                <div class="viewsCount" style="color: #9d9d9d;">({{ $tuan -> category -> title }})</div>
+                <div class="viewsCount" style="color: #9d9d9d;">{{ $tuan -> sotap }} tập</div>
               </div>
             @endforeach
 
@@ -114,15 +104,10 @@
                       @endif
                     </span>
                   </div>
-                  <p class="title">{{ $thang -> title }}</p>
+                  <p class="title text-capitalize">{{ $thang -> title }}</p>
                 </a>
-                <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                <div style="float: left;">
-                  <span class="user-rate-image post-large-rate stars-large-vang"
-                    style="display: block;/* width: 100%; */">
-                    <span style="width: 0%"></span>
-                  </span>
-                </div>
+                <div class="viewsCount" style="color: #9d9d9d;">({{ $thang -> category -> title }})</div>
+                <div class="viewsCount" style="color: #9d9d9d;">{{ $thang -> sotap }} tập</div>
               </div>
             @endforeach
 
@@ -162,15 +147,10 @@
                       @endif
                     </span>
                   </div>
-                  <p class="title">{{ $e -> title }}</p>
+                  <p class="title text-capitalize">{{ $e -> title }}</p>
                 </a>
-                <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                <div style="float: left;">
-                  <span class="user-rate-image post-large-rate stars-large-vang"
-                    style="display: block;/* width: 100%; */">
-                    <span style="width: 0%"></span>
-                  </span>
-                </div>
+                <div class="viewsCount" style="color: #9d9d9d;">({{ $e -> category -> title }})</div>
+                <div class="viewsCount" style="color: #9d9d9d;">{{ $e -> sotap }} tập</div>
               </div>
             @endforeach
 

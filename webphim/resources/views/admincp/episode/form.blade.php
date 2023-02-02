@@ -32,7 +32,7 @@
 
           <div class="row">
             <div class="col-sm-4 col-12">
-              @if (!isset($episode)) 
+              @if (!isset($episode))
                 <div class = "input-group mb-3">
                   <div class="input-group-prepend">
                     {!! Form::label('episode' , 'Tập phim' , ['class' => 'input-group-text']) !!}
@@ -40,12 +40,14 @@
                   <select name="episode" class="custom-select" id="episode"></select>
                 </div>
               @else
-                <div class = "input-group mb-3">
-                  {!! Form::label('episode' , 'Tập phim' , ['class' => 'input-group-text']) !!}
-                  {!! Form::text('episode' , isset($episode) ? $episode -> episode : '' , 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">Tập phim</span>
+                  </div>
+                  {!! Form::text('episode' , isset($episode) ? $episode -> episode : '' ,
                     [
                       'class' => 'form-control',
-                      isset($episode) ? 'readonly' : '',
+                      'readonly' => 'readonly'
                     ]
                   ) !!}
                 </div>

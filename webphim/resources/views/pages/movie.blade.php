@@ -110,7 +110,7 @@
                       {{ $gen -> title }},
                     </a>
                   @endforeach
-                  <a href="" rel="category tag">
+                  <a href="{{route('footage',$movie -> thuocphim)}}" rel="category tag">
                     {{ $movie -> thuocphim }}
                   </a>
                 </li>

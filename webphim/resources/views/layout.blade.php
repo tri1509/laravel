@@ -117,7 +117,7 @@
                 <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"
                   aria-haspopup="true">
                   Thể Loại <span class="caret"></span></a>
-                <ul role="menu" class=" dropdown-menu">
+                <ul role="menu" class="dropdown-menu">
 
                   @foreach($genre as $key => $genre)
                   <li>

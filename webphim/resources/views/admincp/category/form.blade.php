@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-6 col-12">
       <div class="card">
         <div class="card-header">Quản lý danh mục</div>
         <div class="card-body">
@@ -70,12 +70,14 @@
           {!! Form::close() !!}
         </div>
       </div>
+    </div>
+    <div class="col-md-6 col-12">
       <table class="table table-hover" id="table-phim">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Description</th>
+            <th scope="col">Slug</th>
             <th scope="col">Active</th>
             <th scope="col">Action</th>
           </tr>
@@ -85,7 +87,7 @@
           <tr id="{{ $cate -> id }}">
             <th scope="row">{{$key}}</th>
             <td>{{$cate -> title}}</td>
-            <td>{{$cate -> description}}</td>
+            <td>{{$cate -> slug}}</td>
             <td>
               @if($cate -> status)
                 Hiển thị

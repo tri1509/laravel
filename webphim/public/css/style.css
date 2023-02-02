@@ -85,8 +85,8 @@ img:hover {
 #header .site-title {
     margin: 0px;
     text-indent: -9999px;
-    background: url(https://phimhay.lol/wp-content/uploads/2022/11/logo-phimhay.png)
-        no-repeat top left;
+    background: url(https://phimmoichilla.net/dev/images/logo.png) no-repeat top
+        left;
     background-size: contain;
     height: 40px;
 }
@@ -201,6 +201,7 @@ img:hover {
     background: #1f3d58 !important;
     border: none;
     right: 0;
+    z-index: 30;
 }
 @media (min-width: 1200px) {
     #main-contents {
@@ -5380,10 +5381,10 @@ ul.list-info-group {
     }
 }
 .stars-large-vang span {
-    background-image: url(assets/images/stars-large-vang.png);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/1163/1163757.png);
 }
 .stars-large-vang {
-    background-image: url(assets/images/stars-large-vang.png);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/1163/1163757.png);
 }
 @media (max-width: 767px) {
     .footer-logo {
@@ -5411,7 +5412,7 @@ ul.list-info-group {
     height: 32px;
     width: 50px;
     border-radius: 0px 50% 50% 0px;
-    z-index: 20;
+    z-index: 4;
     transition: 0.7s all;
 }
 
@@ -5627,5 +5628,8 @@ span.bannermobi2 img {
 .iframe_phim iframe {
     width: 100%;
     height: 500px;
-    z-index: 100000000;
+}
+
+.iframe_phim {
+    z-index: 50;
 }
