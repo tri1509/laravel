@@ -79,7 +79,7 @@
                 {!! Form::text('trailer' , isset($movie) ? $movie -> trailer : '' , 
                   [
                     'class' => 'form-control',
-                    'placeholder' => 'Nhập vào dữ liệu....',
+                    'placeholder' => '<iframe width="1140" height="641" src="https://www.youtube.com/embed/',
                     'id' => 'trailer',
                   ]
                 ) !!}

@@ -5633,3 +5633,8 @@ span.bannermobi2 img {
 .iframe_phim {
     z-index: 50;
 }
+
+#post-38424 iframe {
+    width: 100%;
+    height: 500px;
+}

@@ -36,18 +36,20 @@
               <img class="movie-thumb"
                 src="{{ asset('/uploads/movie/'.$movie -> image) }}"
                 alt="{{ $movie -> title }}">
-              <div class="bwa-content">
-                <div class="loader"></div>
-                @if ($episode_current_list_count > 1)
-                  <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
-                    <i class="fa fa-play"></i>
-                  </a>
-                @else
-                  <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
-                    <i class="fa fa-play"></i>
-                  </a>
-                @endif
-              </div>
+              @if (isset($episode_first)) 
+                <div class="bwa-content">
+                  <div class="loader"></div>
+                  @if ($episode_current_list_count > 1)
+                    <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
+                      <i class="fa fa-play"></i>
+                    </a>
+                  @else
+                    <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_first->episode)}}" class="bwac-btn">
+                      <i class="fa fa-play"></i>
+                    </a>
+                  @endif
+                </div>
+              @endif
               @if ($movie -> trailer != NULL) 
                 <a href="#watch_trailer" class="btn btn-info" style="display:block">Xem trailer</a>
               @endif
@@ -120,18 +122,20 @@
                     {{ $movie -> country -> title }}
                   </a>
                 </li>
-                <li class="list-info-group-item last-item"
-                  style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
-                  <span>Diễn viên</span> : 
-                  @php
-                    $actors = array();
-                    $actors = explode(',',$movie -> actor);
-                  @endphp
-    
-                  @foreach ($actors as $actor) 
-                    <a href="" rel="nofollow" title="{{ $actor }}">{{ $actor }}</a>,
-                  @endforeach
-                </li>
+                @if ($movie -> actor != NULL) 
+                  <li class="list-info-group-item last-item"
+                    style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
+                    <span>Diễn viên</span> : 
+                    @php
+                      $actors = array();
+                      $actors = explode(',',$movie -> actor);
+                    @endphp
+      
+                    @foreach ($actors as $actor) 
+                      <a href="" rel="nofollow" title="{{ $actor }}">{{ $actor }}</a>,
+                    @endforeach
+                  </li>
+                @endif
               </ul>
               <div class="movie-trailer hidden"></div>
             </div>
@@ -180,7 +184,7 @@
           <div class="entry-content htmlwrap clearfix">
             <div class="video-item halim-entry-box">
               <article id="post-38424" class="item-content">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $movie -> trailer }}" title="{{ $movie -> title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {!! $movie -> trailer !!}
               </article>
             </div>
           </div>

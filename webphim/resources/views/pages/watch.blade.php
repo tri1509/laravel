@@ -41,9 +41,7 @@
               <i class="icon-autonext-sm"></i>
               <span><i class="fa-solid fa-forward"></i> Autonext: <span id="autonext-status">On</span></span>
             </div>
-            <div id="explayer" class="hidden-xs"><i class="fa-solid fa-expand"></i>
-              Expand
-            </div>
+            <div id="explayer" class="hidden-xs"><i class="fa-solid fa-expand"></i> Expand</div>
             <div id="toggle-light"><i class='fa-solid fa-lightbulb'></i>
               Light Off
             </div>
@@ -78,7 +76,7 @@
         <div id="halim-list-server">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active server-1"><a href="#server-0" aria-controls="server-0" role="tab"
-                data-toggle="tab"><i class="hl-server"></i>
+                data-toggle="tab"><i class="fa-solid fa-server"></i>
                 @if($movie -> resolution == 0)HD
                 @elseif($movie -> resolution == 1)SD
                 @elseif($movie -> resolution == 2)Trailer
@@ -89,23 +87,25 @@
           </ul>
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
-              <div class="halim-server">
-                <ul class="halim-list-eps">
-                  @foreach ($movie -> episode as $key => $sotap)
-                      <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$sotap -> episode)}}">
-                        <li class="halim-episode">
-                          <span class="halim-btn halim-btn-2 {{ $tapphim == $sotap -> episode ? 'active' : '' }} halim-info-1-1 box-shadow" data-post-id="37976"
-                            data-server="1" data-episode="1" data-position="first" data-embed="0"
-                            data-title="Xem phim {{ $movie -> title }} - {{ $movie -> name_eng }} - {{ $movie -> genre -> title }} - {{ $movie -> country -> title }} - {{ $movie -> category -> title }}"
-                            data-h1="{{ $movie -> title }} - tập {{ $sotap -> episode }}">
-                            {{ $sotap -> episode }}
-                          </span>
-                        </li>
-                      </a>
-                  @endforeach
-                </ul>
-                <div class="clearfix"></div>
-              </div>
+              @if ($tapphim > 0) 
+                <div class="halim-server">
+                  <ul class="halim-list-eps">
+                    @foreach ($movie -> episode as $key => $sotap)
+                        <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$sotap -> episode)}}">
+                          <li class="halim-episode">
+                            <span class="halim-btn halim-btn-2 {{ $tapphim == $sotap -> episode ? 'active' : '' }} halim-info-1-1 box-shadow" data-post-id="37976"
+                              data-server="1" data-episode="1" data-position="first" data-embed="0"
+                              data-title="Xem phim {{ $movie -> title }} - {{ $movie -> name_eng }} - {{ $movie -> genre -> title }} - {{ $movie -> country -> title }} - {{ $movie -> category -> title }}"
+                              data-h1="{{ $movie -> title }} - tập {{ $sotap -> episode }}">
+                              {{ $sotap -> episode }}
+                            </span>
+                          </li>
+                        </a>
+                    @endforeach
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+              @endif
             </div>
           </div>
         </div>
@@ -129,16 +129,11 @@
                         src="{{ asset('/uploads/movie/'.$mov -> image) }}"
                         alt="{{ $mov -> title }}" title="{{ $mov -> title }}"></figure>
                     <span class="status">
-                      @if($mov -> resolution == 0)
-                        HD
-                      @elseif($mov -> resolution == 1)
-                        SD
-                      @elseif($mov -> resolution == 2)
-                        HDCam
-                      @elseif($mov -> resolution == 3)
-                        Cam
-                      @elseif($mov -> resolution == 4)
-                        FullHD
+                      @if($mov -> resolution == 0)HD
+                      @elseif($mov -> resolution == 1)SD
+                      @elseif($mov -> resolution == 2)HDCam
+                      @elseif($mov -> resolution == 3)Cam
+                      @elseif($mov -> resolution == 4)FullHD
                       @endif
                     </span>
                     <span class="episode">

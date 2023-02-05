@@ -7,7 +7,7 @@
         <div class="col-xs-12">
           <div class="yoast_breadcrumb hidden-xs">
             <span><span>
-              <a href="">{{ $cate_slug -> title }}</a> » 
+              <a href="">{{ $cate_slug -> title }}</a>
               @for ($y = 1995; $y <= 2020; $y ++)  
               » <span class="breadcrumb_last" aria-current="page">
                 <a href="{{ url('nam-'.$y) }}" title="Năm {{ $y }}">{{ $y }}</a>
@@ -26,6 +26,48 @@
     <section>
       <div class="section-bar clearfix">
         <h1 class="section-title"><span>{{ $cate_slug -> title }}</span></h1>
+      </div>
+      <div class="section-bar clearfix">
+        <form action="{{ route('locphim') }}" method="get">
+          @csrf
+          <div class="col-md-3">
+            <div class="form-group">
+              <select name="order" class="form-control" id="exampleFormControlSelect1">
+                <option>---Sắp xếp---</option>
+                <option value="date">Ngày đăng</option>
+                <option value="year_release">Năm sản xuất</option>
+                <option value="name_a_z">Tên Phim</option>
+                <option value="watch_views">Lượt xem</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select name="genre" class="form-control" id="exampleFormControlSelect1">
+                <option>---Thể loại---</option>
+                @foreach($genre as $key => $gen_filter)
+                  <option value="{{ $gen_filter -> id }}">{{ $gen_filter -> title }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select name="country" class="form-control" id="exampleFormControlSelect1">
+                <option>---Quốc gia---</option>
+                @foreach($country as $key => $coun_filter)
+                  <option value="{{ $coun_filter -> id }}">{{ $coun_filter -> title }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              {!! Form::selectYear('year',2010,2022,null,['class' => 'form-control']) !!}
+            </div>
+          </div>
+          <input type="submit" name="locphim" value="Lọc Phim" class="btn btn-default">
+        </form>
       </div>
       <div class="halim_box">
 

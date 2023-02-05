@@ -119,10 +119,10 @@
                   Thể Loại <span class="caret"></span></a>
                 <ul role="menu" class="dropdown-menu">
 
-                  @foreach($genre as $key => $genre)
+                  @foreach($genre as $key => $gen)
                   <li>
-                    <a title="{{$genre -> title}}" href="{{route('genre',$genre -> slug)}}">
-                      {{$genre -> title}}
+                    <a title="{{$gen -> title}}" href="{{route('genre',$gen -> slug)}}">
+                      {{$gen -> title}}
                     </a>
                   </li>
                   @endforeach
@@ -159,9 +159,9 @@
               </li>
             </ul>
           </div>
-          <ul class="nav navbar-nav navbar-left" style="background:#000;">
+          {{-- <ul class="nav navbar-nav navbar-left" style="background:#000;">
             <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
-          </ul>
+          </ul> --}}
         </div>
       </nav>
       <div class="collapse navbar-collapse" id="search-form">
@@ -190,8 +190,6 @@
               src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg"
               alt="Phim hay 2021- Xem phim hay nhất" />
           </div>
-          Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-            data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
         </div>
       </div>
     </div>
